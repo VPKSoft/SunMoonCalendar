@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VPKSoft.SmallCityDatabase</name>
+    </assembly>
+    <members>
+        <member name="T:VPKSoft.SmallCityDatabase.CityLatLonCoordinate">
+            <summary>
+            A class for holding data for a city name, latitude and longitude
+            </summary>
+        </member>
+        <member name="M:VPKSoft.SmallCityDatabase.CityLatLonCoordinate.ToString">
+            <summary>
+            Gets either the CityName or CityNameAscii value.
+            </summary>
+            <returns>Either the CityName or CityNameAscii value.</returns>
+        </member>
+        <member name="P:VPKSoft.SmallCityDatabase.CityLatLonCoordinate.Latitude">
+            <summary>
+            Latitude of a city
+            </summary>
+        </member>
+        <member name="P:VPKSoft.SmallCityDatabase.CityLatLonCoordinate.Longitude">
+            <summary>
+            Longitude of a city
+            </summary>
+        </member>
+        <member name="P:VPKSoft.SmallCityDatabase.CityLatLonCoordinate.CityName">
+            <summary>
+            A city name
+            </summary>
+        </member>
+        <member name="P:VPKSoft.SmallCityDatabase.CityLatLonCoordinate.CityNameAscii">
+            <summary>
+            An ascii-format city name
+            </summary>
+        </member>
+        <member name="P:VPKSoft.SmallCityDatabase.CityLatLonCoordinate.UseAsciiName">
+            <summary>
+            Wether the classes ToString() method should return CityName or CityNameAscii.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.SmallCityDatabase.CityLatLonCoordinate.Province">
+            <summary>
+            An english province name
+            </summary>
+        </member>
+        <member name="P:VPKSoft.SmallCityDatabase.CityLatLonCoordinate.ISO2">
+            <summary>
+            An ISO2 two letter country code
+            </summary>
+        </member>
+        <member name="P:VPKSoft.SmallCityDatabase.CityLatLonCoordinate.ISO3">
+            <summary>
+            An ISO3 three letter country code
+            </summary>
+        </member>
+        <member name="P:VPKSoft.SmallCityDatabase.CityLatLonCoordinate.Country">
+            <summary>
+            An english country name
+            </summary>
+        </member>
+        <member name="T:VPKSoft.SmallCityDatabase.Cities">
+            <summary>
+            A class containing a list of major world cities
+            </summary>
+        </member>
+        <member name="F:VPKSoft.SmallCityDatabase.Cities.cityList">
+            <summary>
+            A list of major world cities
+            </summary>
+        </member>
+        <member name="M:VPKSoft.SmallCityDatabase.Cities.#ctor(System.Boolean)">
+            <summary>
+            The class constructor. Initializes the city list.
+            </summary>
+            <param name="useAsciiName">
+            Wether the CityLatLonCoordinate classes ToString() method should return ascii name or name.
+            </param>
+        </member>
+        <member name="M:VPKSoft.SmallCityDatabase.Cities.FindCityByName(System.String)">
+            <summary>
+            Finds cities by their names or ascii names. A "like" search.
+            </summary>
+            <param name="findStr">A string to find a city by name with.</param>
+            <returns>A list of cities that matches the <paramref name="findStr"/> string.</returns>
+        </member>
+        <member name="P:VPKSoft.SmallCityDatabase.Cities.CityList">
+            <summary>
+            A list of major world cities
+            </summary>
+        </member>
+    </members>
+</doc>

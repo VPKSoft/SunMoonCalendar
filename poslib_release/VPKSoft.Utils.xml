@@ -1,0 +1,669 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VPKSoft.Utils</name>
+    </assembly>
+    <members>
+        <member name="T:VPKSoft.Utils.BasicSecurity">
+            <summary>
+            A class to protect and unprotect data using
+            <para/>System.Security.Cryptography.ProtectedData class.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Secure(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)">
+            <summary>
+            Secures a byte array with a given entropy and DataProtectionScope.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <param name="entropy">An optional entropy to be used with the encryption.</param>
+            <param name="scope">A System.Security.Cryptography.DataProtectionScope
+            <para/>enumeration to be used with the encryption.</param>
+            <returns>An encrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Secure(System.Byte[],System.Security.Cryptography.DataProtectionScope)">
+            <summary>
+            Secures a byte array with a given DataProtectionScope and null entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <param name="scope">A System.Security.Cryptography.DataProtectionScope
+            <para/>enumeration to be used with the encryption.</param>
+            <returns>An encrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.SecureCurrentUser(System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.CurrentUser and null entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <returns>An encrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Secure(System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.CurrentUser and null entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <returns>An encrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.SecureLocalMachine(System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.LocalMachine and null entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <returns>An encrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.SecureCurrentUser(System.Byte[],System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.CurrentUser and with a given entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <param name="entropy">An entropy (byte array) to be used with the encryption.</param>
+            <returns></returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Secure(System.Byte[],System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.CurrentUser and with a given entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <param name="entropy">An entropy (byte array) to be used with the encryption.</param>
+            <returns></returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.SecureLocalMachine(System.Byte[],System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.LocalMachine and with a given entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <param name="entropy">An entropy (byte array) to be used with the encryption.</param>
+            <returns></returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Unsecure(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)">
+            <summary>
+            Decrypts a byte array with a given entropy and DataProtectionScope.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <param name="entropy">An optional entropy to be used with the decryption.</param>
+            <param name="scope">A System.Security.Cryptography.DataProtectionScope
+            <para/>enumeration to be used with the decryption.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Unsecure(System.Byte[],System.Security.Cryptography.DataProtectionScope)">
+            <summary>
+            Decrypts a byte array with a DataProtectionScope and null entropy.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <param name="scope">A System.Security.Cryptography.DataProtectionScope
+            <para/>enumeration to be used with the decryption.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.UnsecureCurrentUser(System.Byte[])">
+            <summary>
+            Decrypts a byte array with a DataProtectionScope.CurrentUser and null entropy.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Unsecure(System.Byte[])">
+            <summary>
+            Decrypts a byte array with a DataProtectionScope.CurrentUser and null entropy.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.UnsecureLocalMachine(System.Byte[])">
+            <summary>
+            Decrypts a byte array with a DataProtectionScope.LocalMachine and null entropy.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.UnsecureCurrentUser(System.Byte[],System.Byte[])">
+            <summary>
+            Decrypts a byte array with a given entropy and DataProtectionScope.CurrentUser.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <param name="entropy">An optional entropy to be used with the decryption.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Unsecure(System.Byte[],System.Byte[])">
+            <summary>
+            Decrypts a byte array with a given entropy and DataProtectionScope.CurrentUser.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <param name="entropy">An optional entropy to be used with the decryption.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.UnsecureLocalMachine(System.Byte[],System.Byte[])">
+            <summary>
+            Decrypts a byte array with a given entropy and DataProtectionScope.LocalMachine.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <param name="entropy">An optional entropy to be used with the decryption.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.Bytes">
+            <summary>
+            Utilities for converting bytes from a 
+            <para/>hexadecimal string representation
+            <para/>and vice versa.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToByteArray(System.String)">
+            <summary>
+            Converts a hexadecimal string to a a byte array.
+            </summary>
+            <param name="hex">A hexadecimal string to convert.</param>
+            <returns>A byte array which has been converted from a hexadecimal string.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.BytesToHexString(System.Byte[])">
+            <summary>
+            Converts an array of bytes into a hexadecimal
+            <para/>string presentation.
+            </summary>
+            <param name="value">A byte array.</param>
+            <returns>A hexadecimal string presentation</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexString(System.String,System.Text.Encoding)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <param name="enc">An instance of System.Text.Encoding class
+            <para/>to be used for the hexadecimal presentation conversion.</param>
+            <returns>A hexadecimal string presentation of the given value with a given encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringUTF8(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with an UTF8 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringUTF32(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with an UTF32 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringUnicode(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with a UTF8 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringASCII(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with an ASCII encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringBigEndianUnicode(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with a BigEndianUnicode encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringUTF7(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with an UTF7 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToString(System.Byte[],System.Text.Encoding)">
+            <summary>
+            Converts a byte array to string with a given encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <param name="enc">An encoding to use to convert the byte array to a string.</param>
+            <returns>A string converted from the byte array with the given encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringUTF8(System.Byte[])">
+            <summary>
+            Converts a byte array to string with UTF8 encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with UTF8 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringUnicode(System.Byte[])">
+            <summary>
+            Converts a byte array to string with Unicode encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with Unicode encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringASCII(System.Byte[])">
+            <summary>
+            Converts a byte array to string with ASCII encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with ASCII encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringBigEndianUnicode(System.Byte[])">
+            <summary>
+            Converts a byte array to string with BigEndianUnicode encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with BigEndianUnicode encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringUTF32(System.Byte[])">
+            <summary>
+            Converts a byte array to string with UTF32 encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with UTF32 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringUTF7(System.Byte[])">
+            <summary>
+            Converts a byte array to string with UTF7 encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with UTF7 encoding.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.ProgramArgumentCollection">
+            <summary>
+            A class for handling program command-line arguments.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.ProgramArgumentCollection.#ctor">
+            <summary>
+            A constructor that handles the program's command-line arguments.
+            <para/>The arguments are splitted from a position of an equals
+            <para/>character (=) and the first part becomes the argument name and
+            <para/>the second part becomes the arguments value. 
+            <para/>If there is no splitting character the value of an argument
+            <para/>simply becomes "1".
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.ProgramArgumentCollection.IgnoreCase">
+            <summary>
+            Should the class instance ignore the case of an argument.
+            <para/>The value of an argument is not affected.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.ProgramArgumentCollection.IgnorePreceedingHyphens">
+            <summary>
+            Should the class instance preceeding hyphens
+            <para/>of an argument (e.g. --lang=1033 --> lang=1033).
+            <para/>The value of an argument is not affected.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.ProgramArgumentCollection.args">
+            <summary>
+            Private list of arguments.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.ProgramArgumentCollection.ArgumentExists(System.String)">
+            <summary>
+            Get's a value if an argument with a given name exists.
+            </summary>
+            <param name="arg">The argument name of which existance to check.</param>
+            <returns>True if the argument with a given name exists, otherwise false.</returns>
+        </member>
+        <member name="P:VPKSoft.Utils.ProgramArgumentCollection.Item(System.String)">
+            <summary>
+            Get's a value of an argument with a given name.
+            </summary>
+            <param name="arg">The argument name which value to get.</param>
+            <returns>The value of an argument if such exists, otherwise null is returned.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.DBUtils">
+            <summary>
+            A static class for database utilities.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.DBUtils.MkStr(System.String)">
+            <summary>
+            Makes a string a database combatible.
+            <para/> -Hyphens (') are replaced with double hyphens.
+            <para/> -The returning string is surrounded with hyphens (').
+            </summary>
+            <param name="str">A string to make database compatible.</param>
+            <returns>A database combatible string.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.MainAppInfo">
+            <summary>
+            Provides information of the entry assembly (the main application).
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.MainAppInfo.EntryAssembly">
+            <summary>
+            A static reference to the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Version">
+            <summary>
+            Gets the version of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.VersionString">
+            <summary>
+            Gets the version of the entry assembly as string.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Name">
+            <summary>
+            Gets the name of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Title">
+            <summary>
+            Gets the title of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Description">
+            <summary>
+            Gets the description of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Product">
+            <summary>
+            Gets the product name of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Copyright">
+            <summary>
+            Gets the copyright string of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Company">
+            <summary>
+            Gets the company of the entry assembly.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.Misc">
+            <summary>
+            Misc utilities.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.Misc.AppType">
+            <summary>
+            The application type. 
+            <para/>WPF (for Windows Presentaton Foundation)
+            <para/>Winforms (for Windows Forms application)
+            <para/>Undefined (for throwing exceptions)
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.Misc.AppType.WPF">
+            <summary>
+            WPF (for Windows Presentaton Foundation)
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.Misc.AppType.Winforms">
+            <summary>
+            Winforms (for Windows Forms application)
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.Misc.AppType.ASP">
+            <summary>
+            And ASP.NET application
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.Misc.AppType.Undefined">
+            <summary>
+            Undefined (for throwing exceptions)
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.Paths">
+            <summary>
+            Some path utilities related to an "application".
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.Paths.GetAppSettingsFolder">
+            <summary>
+            Just returns the default writable data directory for "non-roaming" applications.
+            </summary>
+            <returns>A writable data directory for "non-roaming" applications.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Paths.GetAppSettingsFolder(VPKSoft.Utils.Misc.AppType)">
+            <summary>
+            Just returns the default writable data directory for "non-roaming" applications.
+            </summary>
+            <returns>A writable data directory for "non-roaming" applications.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Paths.MakeAppSettingsFolder">
+            <summary>
+            Generates and returns the default writable data directory for "non-roaming" applications.
+            </summary>
+            <returns>A writable data directory for "non-roaming" applications.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Paths.MakeAppSettingsFolder(VPKSoft.Utils.Misc.AppType)">
+            <summary>
+            Generates and returns the default writable data directory for "non-roaming" applications.
+            </summary>
+            <returns>A writable data directory for "non-roaming" applications.</returns>
+        </member>
+        <member name="P:VPKSoft.Utils.Paths.AppInstallDir">
+            <summary>
+            Returns the executable directory of an application.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.Strings">
+            <summary>
+            Extensions to string class.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.Strings.TrimEndCount(System.String,System.Char,System.Int32)">
+            <summary>
+            Trims a given amount of characters from a string's end.
+            </summary>
+            <param name="str">A string to trim.</param>
+            <param name="trimChar">A character to remove (trim).</param>
+            <param name="count">A number which indicates how many
+            <para/>characters to remove (trim) from a string.</param>
+            <returns>A string with trimmed from the end.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Strings.TrimStartCount(System.String,System.Char,System.Int32)">
+            <summary>
+            Trims a given amount of characters from a string's start.
+            </summary>
+            <param name="str">A string to trim.</param>
+            <param name="trimChar">A character to remove (trim).</param>
+            <param name="count">A number which indicates how many
+            <para/>characters to remove (trim) from a string.</param>
+            <returns>A string with trimmed from the start.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.Utils">
+            <summary>
+            Utilities by VPKSoft.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.Utils.ASP">
+            <summary>
+            True if the application is a ASP.NET application.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.Utils.WinForms">
+            <summary>
+            True if the application is a Windows Forms Application
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.Utils.WPF">
+            <summary>
+            True if the application is a Windows Presentation Foundation application
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.VPKNml">
+            <summary>
+            A class for handling VPKSoft NOT markup language files = (VNml (*.vnml))).
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VersioStr10">
+            <summary>
+            An exception is thrown if the first line is not one of the(se) strings.
+            <para/>As versions grow, more will appear.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VersioStr">
+            <summary>
+            An array of acceptable version strings.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.nameSpace">
+            <summary>
+            A namespace to use.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.fileContents">
+            <summary>
+            Internal list for holding file section.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.#ctor">
+            <summary>
+            A constructor with no namespace to use.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.#ctor(System.String)">
+            <summary>
+            Constructor with a namespace.
+            </summary>
+            <param name="nameSpace">A namespace to use.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.Load(System.String)">
+            <summary>
+            Loads a vnml document.
+            </summary>
+            <param name="fileName">A file from which the vnml document should be loaded from.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.DeleteSections(System.String)">
+            <summary>
+            Deletes sections matching a given mask from the current namespace.
+            </summary>
+            <param name="mask">A string indicating sections to be deleted.
+            <para/>If an asterisk (*) mark is the last character, all sections
+            <para/>starting with the given mask are deleted.
+            <para/>If the give mask is an asterisk (*) character, all the contents will be deleted.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.DeleteValues(System.String,System.String)">
+            <summary>
+            Deletes values from a given section matching a given mask from the current namespace.
+            </summary>
+            <param name="section">A section to delete the values from in the current namespace.</param>
+            <param name="mask">A string indicating values to be deleted.
+            <para/>If an asterisk (*) mark is the last character, all values
+            <para/>starting with the given mask are deleted.
+            <para/>If the section has no values after the operation the section is also deleted.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.SetComment(System.String,System.String,System.String[])">
+            <summary>
+            Sets a comment to a to a given section or to the section's value name. 
+            </summary>
+            <param name="name">A section name.</param>
+            <param name="valueName">A value name or null if the comment is to be given to a section.</param>
+            <param name="comment">A comment to set.</param>
+            <returns>True if the comment was successfully given, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.SetComment(System.Collections.Generic.List{System.String},System.String,System.String)">
+            <summary>
+            Sets a comment to a to a given section or to the section's value name. 
+            </summary>
+            <param name="comment">A comment to set.</param>
+            <param name="name">A section name.</param>
+            <param name="valueName">A value name or null if the comment is to be given to a section.</param>
+            <returns>True if the comment was successfully given, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.GetComment(System.String,System.String)">
+            <summary>
+            Gets a comment of a given section or a comment of the section's value name. 
+            </summary>
+            <param name="name">A section name.</param>
+            <param name="valueName">A value name or null if the section's comment is needed.</param>
+            <returns>A comment of a given section or a comment of the section's value name.
+            <para/>If a value or a section is not found, null is returned.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.Save(System.String)">
+            <summary>
+            Saves a vnml document.
+            </summary>
+            <param name="fileName">A file to which the vnml document should be saved to.</param>
+        </member>
+        <member name="P:VPKSoft.Utils.VPKNml.NameSpace">
+            <summary>
+            A namespace to use.
+            <remarks>White spaces in the name will be removed.</remarks>
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.VPKNml.Item(System.String,System.String,System.Object)">
+            <summary>
+            Gets an object with a given name and it's value name.
+            </summary>
+            <param name="name">A name of the object.</param>
+            <param name="valueName">A value name of the object</param>
+            <param name="defaultValue">A default value to return if the object was not found.</param>
+            <returns>The object in string presentation or
+            <para/>the default value if object with name and value name does not exist.</returns>
+            <remarks>If the value name starts with "BIN:" the value will
+            <para/>be returned as an array of bytes.</remarks>
+        </member>
+        <member name="P:VPKSoft.Utils.VPKNml.Item(System.String,System.String)">
+            <summary>
+            Gets or sets an object with a given name and it's value name.
+            </summary>
+            <param name="name">A name of the object.</param>
+            <param name="valueName">A value name of the object</param>
+            <returns>The object in string presentation or
+            <para/>null if object with name and value name does not exist.</returns>
+            <remarks>If the value name starts with "BIN:" the value will
+            <para/>be saved as hexadecimal string presentation
+            <para/>and returned as an array of bytes.</remarks>
+        </member>
+        <member name="T:VPKSoft.Utils.VPKNml.VmlEntry">
+            <summary>
+            An insternal class to hold a single section of the file.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VmlEntry.Name">
+            <summary>
+            The section name.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VmlEntry.Comments">
+            <summary>
+            Main level comments.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VmlEntry.Values">
+            <summary>
+            The section values.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.VmlEntry.#ctor(System.String)">
+            <summary>
+            Constructor for the VmlEntry class.
+            </summary>
+            <param name="name">The section name.</param>
+        </member>
+        <member name="T:VPKSoft.Utils.VPKNml.VmlSubEntry">
+            <summary>
+            An internal class to hold a single value of a single section of the file.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VmlSubEntry.Value">
+            <summary>
+            The value. 
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VmlSubEntry.Comments">
+            <summary>
+            Comments givent to the value.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.VmlSubEntry.#ctor(System.Object,System.Collections.Generic.List{System.String})">
+            <summary>
+            The constructor for the internal class to hold
+            <para/>a single value of a single section of the file.
+            </summary>
+            <param name="value"></param>
+            <param name="comments"></param>
+        </member>
+    </members>
+</doc>

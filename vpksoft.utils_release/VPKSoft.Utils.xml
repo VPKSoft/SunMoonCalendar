@@ -1,0 +1,1212 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VPKSoft.Utils</name>
+    </assembly>
+    <members>
+        <member name="T:VPKSoft.Utils.AppRunning">
+            <summary>
+            Application utilities, for example to check if an application is already running.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.AppRunning.mutexes">
+            <summary>
+            A static list to hold the created mutexes.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.AppRunning.CheckIfRunning(System.String)">
+            <summary>
+            Checks if an application with a given unique string is already running.
+            </summary>
+            <param name="uniqueID">An (assumed) unique ID to use for the check.</param>
+            <returns>True if an application with a given unique string is already running, otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.BasicSecurity">
+            <summary>
+            A class to protect and unprotect data using
+            <para/>System.Security.Cryptography.ProtectedData class.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Secure(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)">
+            <summary>
+            Secures a byte array with a given entropy and DataProtectionScope.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <param name="entropy">An optional entropy to be used with the encryption.</param>
+            <param name="scope">A System.Security.Cryptography.DataProtectionScope
+            <para/>enumeration to be used with the encryption.</param>
+            <returns>An encrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Secure(System.Byte[],System.Security.Cryptography.DataProtectionScope)">
+            <summary>
+            Secures a byte array with a given DataProtectionScope and null entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <param name="scope">A System.Security.Cryptography.DataProtectionScope
+            <para/>enumeration to be used with the encryption.</param>
+            <returns>An encrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.SecureCurrentUser(System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.CurrentUser and null entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <returns>An encrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Secure(System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.CurrentUser and null entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <returns>An encrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.SecureLocalMachine(System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.LocalMachine and null entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <returns>An encrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.SecureCurrentUser(System.Byte[],System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.CurrentUser and with a given entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <param name="entropy">An entropy (byte array) to be used with the encryption.</param>
+            <returns></returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Secure(System.Byte[],System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.CurrentUser and with a given entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <param name="entropy">An entropy (byte array) to be used with the encryption.</param>
+            <returns></returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.SecureLocalMachine(System.Byte[],System.Byte[])">
+            <summary>
+            Secures a byte array with DataProtectionScope.LocalMachine and with a given entropy.
+            </summary>
+            <param name="bytes">Bytes to secure.</param>
+            <param name="entropy">An entropy (byte array) to be used with the encryption.</param>
+            <returns></returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Unsecure(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)">
+            <summary>
+            Decrypts a byte array with a given entropy and DataProtectionScope.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <param name="entropy">An optional entropy to be used with the decryption.</param>
+            <param name="scope">A System.Security.Cryptography.DataProtectionScope
+            <para/>enumeration to be used with the decryption.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Unsecure(System.Byte[],System.Security.Cryptography.DataProtectionScope)">
+            <summary>
+            Decrypts a byte array with a DataProtectionScope and null entropy.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <param name="scope">A System.Security.Cryptography.DataProtectionScope
+            <para/>enumeration to be used with the decryption.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.UnsecureCurrentUser(System.Byte[])">
+            <summary>
+            Decrypts a byte array with a DataProtectionScope.CurrentUser and null entropy.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Unsecure(System.Byte[])">
+            <summary>
+            Decrypts a byte array with a DataProtectionScope.CurrentUser and null entropy.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.UnsecureLocalMachine(System.Byte[])">
+            <summary>
+            Decrypts a byte array with a DataProtectionScope.LocalMachine and null entropy.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.UnsecureCurrentUser(System.Byte[],System.Byte[])">
+            <summary>
+            Decrypts a byte array with a given entropy and DataProtectionScope.CurrentUser.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <param name="entropy">An optional entropy to be used with the decryption.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.Unsecure(System.Byte[],System.Byte[])">
+            <summary>
+            Decrypts a byte array with a given entropy and DataProtectionScope.CurrentUser.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <param name="entropy">An optional entropy to be used with the decryption.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.BasicSecurity.UnsecureLocalMachine(System.Byte[],System.Byte[])">
+            <summary>
+            Decrypts a byte array with a given entropy and DataProtectionScope.LocalMachine.
+            </summary>
+            <param name="bytes">Bytes to decrypt.</param>
+            <param name="entropy">An optional entropy to be used with the decryption.</param>
+            <returns>An decrypted byte array.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.Bytes">
+            <summary>
+            Utilities for converting bytes from a 
+            <para/>hexadecimal string representation
+            <para/>and vice versa.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToByteArray(System.String)">
+            <summary>
+            Converts a hexadecimal string to a a byte array.
+            </summary>
+            <param name="hex">A hexadecimal string to convert.</param>
+            <returns>A byte array which has been converted from a hexadecimal string.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.BytesToHexString(System.Byte[])">
+            <summary>
+            Converts an array of bytes into a hexadecimal
+            <para/>string presentation.
+            </summary>
+            <param name="value">A byte array.</param>
+            <returns>A hexadecimal string presentation</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexString(System.String,System.Text.Encoding)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <param name="enc">An instance of System.Text.Encoding class
+            <para/>to be used for the hexadecimal presentation conversion.</param>
+            <returns>A hexadecimal string presentation of the given value with a given encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringUTF8(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with an UTF8 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringUTF32(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with an UTF32 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringUnicode(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with a UTF8 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringASCII(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with an ASCII encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringBigEndianUnicode(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with a BigEndianUnicode encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.StringToHexStringUTF7(System.String)">
+            <summary>
+            Converts a specified string into a hexadecimal presentation
+            <para/>of the bytes in a given string.
+            </summary>
+            <param name="value">A string to convert into hexadecimal presentation of the bytes in it.</param>
+            <returns>A hexadecimal string presentation of the given value with an UTF7 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToString(System.Byte[],System.Text.Encoding)">
+            <summary>
+            Converts a byte array to string with a given encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <param name="enc">An encoding to use to convert the byte array to a string.</param>
+            <returns>A string converted from the byte array with the given encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringUTF8(System.Byte[])">
+            <summary>
+            Converts a byte array to string with UTF8 encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with UTF8 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringUnicode(System.Byte[])">
+            <summary>
+            Converts a byte array to string with Unicode encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with Unicode encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringASCII(System.Byte[])">
+            <summary>
+            Converts a byte array to string with ASCII encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with ASCII encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringBigEndianUnicode(System.Byte[])">
+            <summary>
+            Converts a byte array to string with BigEndianUnicode encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with BigEndianUnicode encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringUTF32(System.Byte[])">
+            <summary>
+            Converts a byte array to string with UTF32 encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with UTF32 encoding.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Bytes.ByteArrayToStringUTF7(System.Byte[])">
+            <summary>
+            Converts a byte array to string with UTF7 encoding.
+            </summary>
+            <param name="bArr">A byte array to be converted into a string.</param>
+            <returns>A string converted from the byte array with UTF7 encoding.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.ProgramArgumentCollection">
+            <summary>
+            A class for handling program command-line arguments.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.ProgramArgumentCollection.#ctor">
+            <summary>
+            A constructor that handles the program's command-line arguments.
+            <para/>The arguments are splitted from a position of an equals
+            <para/>character (=) and the first part becomes the argument name and
+            <para/>the second part becomes the arguments value. 
+            <para/>If there is no splitting character the value of an argument
+            <para/>simply becomes "1".
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.ProgramArgumentCollection.IgnoreCase">
+            <summary>
+            Should the class instance ignore the case of an argument.
+            <para/>The value of an argument is not affected.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.ProgramArgumentCollection.IgnorePreceedingHyphens">
+            <summary>
+            Should the class instance preceeding hyphens
+            <para/>of an argument (e.g. --lang=1033 --> lang=1033).
+            <para/>The value of an argument is not affected.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.ProgramArgumentCollection.args">
+            <summary>
+            Private list of arguments.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.ProgramArgumentCollection.ArgumentExists(System.String)">
+            <summary>
+            Get's a value if an argument with a given name exists.
+            </summary>
+            <param name="arg">The argument name of which existance to check.</param>
+            <returns>True if the argument with a given name exists, otherwise false.</returns>
+        </member>
+        <member name="P:VPKSoft.Utils.ProgramArgumentCollection.Item(System.String)">
+            <summary>
+            Get's a value of an argument with a given name.
+            </summary>
+            <param name="arg">The argument name which value to get.</param>
+            <returns>The value of an argument if such exists, otherwise null is returned.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.DBUtils">
+            <summary>
+            A static class for database utilities.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.DBUtils.MkStr(System.String)">
+            <summary>
+            Makes a string a database combatible.
+            <para/> -Hyphens (') are replaced with double hyphens.
+            <para/> -The returning string is surrounded with hyphens (').
+            </summary>
+            <param name="str">A string to make database compatible.</param>
+            <returns>A database combatible string.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.UserWakeEventArgs">
+            <summary>
+            Event arguments passed with UserWake event from HumanActivity class instance.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.UserWakeEventArgs.UserSlept">
+            <summary>
+            The time the user has been idle.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.UserWakeEventArgs.#ctor">
+            <summary>
+            A UserWakeEventArgs constructor.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.UserSleepEventArgs">
+            <summary>
+            Event arguments passed with UserSleep event from HumanActivity class instance.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.UserSleepEventArgs.StopIdle">
+            <summary>
+            Stop the idle UserIdle event from occurring continously. 
+            It will start again when user activity is detected.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.UserSleepEventArgs.#ctor">
+            <summary>
+            A UserSleepEventArgs constructor.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.HumanActivity">
+            <summary>
+            A class that monitors user activity (idle time) within a Windows Forms application.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.WM_LBUTTONDOWN">
+            <summary>
+            Constant for a message that the IMessageFilter is monitoring.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.WM_MBUTTONDOWN">
+            <summary>
+            Constant for a message that the IMessageFilter is monitoring.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.WM_MOUSEHWHEEL">
+            <summary>
+            Constant for a message that the IMessageFilter is monitoring.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.WM_RBUTTONDOWN">
+            <summary>
+            Constant for a message that the IMessageFilter is monitoring.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.WM_XBUTTONDOWN">
+            <summary>
+            Constant for a message that the IMessageFilter is monitoring.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.WM_MOUSEWHEEL">
+            <summary>
+            Constant for a message that the IMessageFilter is monitoring.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.WM_KEYDOWN">
+            <summary>
+            Constant for a message that the IMessageFilter is monitoring.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.apps">
+            <summary>
+            A static list of process id's for applications that use this class.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.dt1">
+            <summary>
+            A DateTime used internally to measure time spans.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.dt2">
+            <summary>
+            Another DateTime used internally to measure time spans.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.HumanActivity.Stop">
+            <summary>
+            Destroys the timer that measures the user idle time.
+            <para/>Same as Enabled = false.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.idleTime">
+            <summary>
+            An idle time in seconds assigned by the class constructor.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.HumanActivity.#ctor(System.Int32)">
+            <summary>
+            A constructor for the HumanActivity class.
+            </summary>
+            <param name="idleTimeSeconds">An idle time in seconds to measure user activity before the UserSleep event is fired.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.HumanActivity.TTimerCall(System.Object)">
+            <summary>
+            A callback method that is given to a System.Threading.Timer
+            <para/>class instance to fire the UserSleep event after a certain time span.
+            </summary>
+            <param name="stateInfo">An object that is passed to this method by a System.Threading.Timer class instance.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.HumanActivity.ConstructTimer">
+            <summary>
+            Creates a new System.Threading.Timer class instance with an interval in seconds
+            <para/>given the class constructor.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.HumanActivity.DestructTimer">
+            <summary>
+            Destructs a System.Threading.Timer class instance if one exists with an instance of this class.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.HumanActivity.RebuildTimer">
+            <summary>
+            Intitiates subsequent calls to DestructTimer() and ConstructTimer() methods.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.enabled">
+            <summary>
+            A value indicating if the monitoring of user activity is enabled.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.HumanActivity.tm">
+            <summary>
+            A System.Threading.Timer class instance to fire the UserSleep event
+            <para/>if a given time span of inactivity has occurred.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.HumanActivity.PreFilterMessage(System.Windows.Forms.Message@)">
+            <summary>
+            An implementation for IMessageFilter.PreFilterMessage method.
+            <para/>This sees if mouse or keyboard activity within the application is happening.
+            </summary>
+            <param name="m">A reference to a System.Windows.Forms.Message class instance.</param>
+            <returns>True to filter the message and stop it from being dispatched; 
+            <para/>false to allow the message to continue to the next filter or control.
+            <para/>Note: In this case false is returned always.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.HumanActivity.Finalize">
+            <summary>
+            The class destructor. 
+            <para/>The application's process id is removed from the internal list of process id's and
+            <para/>the System.Threading.Timer class instance is disposed.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.HumanActivity.Sleeping">
+            <summary>
+            Returns true if the user is sleeping..
+            </summary>
+        </member>
+        <member name="E:VPKSoft.Utils.HumanActivity.UserSleep">
+            <summary>
+            An event that is fired when user activity has been idle for a given amount of seconds.
+            </summary>
+        </member>
+        <member name="E:VPKSoft.Utils.HumanActivity.UserWake">
+            <summary>
+            An event that is fired when user activity has occurred.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.HumanActivity.Stopped">
+            <summary>
+            Gets or sets a value indicating if a user's idle time should be monitored.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.HumanActivity.Enabled">
+            <summary>
+            Gets or sets a value indicating if the monitoring of user activity should be enabled.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.HumanActivity.OnUserSleep">
+            <summary>
+            A delegate for the UserSleep event.
+            </summary>
+            <param name="sender">A sender of the event.</param>
+            <param name="e">Event arguments passed with UserSleep event.</param>
+        </member>
+        <member name="T:VPKSoft.Utils.HumanActivity.OnUserWake">
+            <summary>
+            A delegate for the UserWake event.
+            </summary>
+            <param name="sender">A sender of the event.</param>
+            <param name="e">Event arguments passed with UserWake event.</param>
+        </member>
+        <member name="T:VPKSoft.Utils.MainAppInfo">
+            <summary>
+            Provides information of the entry assembly (the main application).
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.MainAppInfo.EntryAssembly">
+            <summary>
+            A static reference to the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Version">
+            <summary>
+            Gets the version of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.VersionString">
+            <summary>
+            Gets the version of the entry assembly as string.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Name">
+            <summary>
+            Gets the name of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Title">
+            <summary>
+            Gets the title of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Description">
+            <summary>
+            Gets the description of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Product">
+            <summary>
+            Gets the product name of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Copyright">
+            <summary>
+            Gets the copyright string of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.MainAppInfo.Company">
+            <summary>
+            Gets the company of the entry assembly.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.IMessageSender">
+            <summary>
+            An interface used by RemotingMessageClient and RemotingMessageServer classes.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.IMessageSender.SendMessage(System.String,System.Int32,System.String)">
+            <summary>
+            A method skeleton ipmplemented by RemotingMessageClient and RemotingMessageServer classes.
+            </summary>
+            <param name="message">A string message to send or receive.</param>
+            <param name="tcpPort">A tcp port to be used for the communication.</param>
+            <param name="uriExtension">An uri extension e.g. "messageTest" to use for the communication.</param>
+            <returns>True if the message between RPC (Remote Procedure Call) client and server was exchanged successfully, otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.RemotingMessageHelper">
+            <summary>
+            A helper class for RemotingMessageClient and RemotingMessageServer classes
+            <para/>to check if TCP channel is registed with System.Runtime.Remoting.ChannelServices
+            <para/>class static member called RegisteredChannels.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageHelper.TCPChannelRegistered">
+            <summary>
+            Returns true if a channed named "tcp" is registered within
+            <para/>System.Runtime.Remoting.ChannelServices.RegisteredChannels
+            <para/>array.
+            </summary>
+            <returns>True if the channed "tcp" was registered, otherwise false.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.RemotingMessageServer">
+            <summary>
+            Provides an inter-process communication server using TCP protocol and .NET remoting.
+            <para/>This part will receive the messages and fires events as they are received.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.servers">
+            <summary>
+            An internal static list of RPC (Remote Procedure Call) servers 
+            <para/>registered with an this class using Register method.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.messageQueue">
+            <summary>
+            A list of message that couldn't be passed via the GotMessage
+            <para/>event because it wasn't assigned.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.channel">
+            <summary>
+            A TcpChannel used for the communication.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.tctPort">
+            <summary>
+            A TCP port number to be used for the communication.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.uriExtension">
+            <summary>
+            An uri extension e.g. "messageTest" to use for the communication.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.floodLimit">
+            <summary>
+            A limit for number of messages before the queue count
+            <para/>for messages is considered overflown before they
+            <para/>could be delegated via the GotMessage event.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.maxChars">
+            <summary>
+            A limit of characters in a message before the message 
+            <para/>is considered overflown.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageServer.Register(System.Int32,System.String,VPKSoft.Utils.RemotingMessageServer.OnMessage,System.Int32,System.Int32)">
+            <summary>
+            Registers a TcpChannel with a given port number, adds a ServerEntry class instance
+            <para/>to the internal static list and registers the RPC (Remote Procedure Call) server
+            <para/>with the RemotingConfiguration class.
+            </summary>
+            <param name="TCPPort">A TCP port number to be used for the communication.</param>
+            <param name="UriExtension">An uri extension e.g. "messageTest" to use for the communication.</param>
+            <param name="msg">A deletegate for the event when a message is received.</param>
+            <param name="FloodLimit">A limit for number of messages before the queue count
+            <para/>for messages is considered overflown before they
+            <para/>could be delegated via the GotMessage event.</param>
+            <param name="MaxChars">A limit of characters in a message before the message 
+            <para/>is considered overflown.</param>
+            <returns>True if a new ServerEntry class instance was successfully registered, Otherwise (and on Exception) false.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageServer.UnRegister(System.Int32,System.String)">
+            <summary>
+            Un-registers a TcpChannel with a given port number, removes a ServerEntry class instance
+            <para/>from the internal static list.
+            </summary>
+            <param name="TCPPort">A TCP port number used with the communication.</param>
+            <param name="UriExtension">An uri extension e.g. "messageTest" used for the communication.</param>
+            <returns></returns>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageServer.MessagesInQueue">
+            <summary>
+            Gets a value indicating if there are un-delegated messages in the queue.
+            </summary>
+            <returns>True if there are un-delegated messages in the queue, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageServer.PopQueue">
+            <summary>
+            Gets a first pending message from the message queue.
+            </summary>
+            <returns>A string message if one was found from the queue, otherwise string.Empty.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageServer.SendMessage(System.String,System.Int32,System.String)">
+            <summary>
+            Delegates a received message by firing the GotMessage event.
+            <para/>If the floodLimit or maxChars were exceeded, and exception is thrown.
+            </summary>
+            <param name="message">A message to delegate.</param>
+            <param name="tcpPort">A TCP port from which the message was received.</param>
+            <param name="uriExtension">An uri extension from which the message was received.</param>
+            <returns>True if the message was successfully delegated, otherwise false.
+            <para/><remarks>An exception is thrown if the message limits were exceeded.</remarks>
+            </returns>
+        </member>
+        <member name="E:VPKSoft.Utils.RemotingMessageServer.GotMessage">
+            <summary>
+            An event which is fired when a RPC (Remote Procedure Call) is received.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.RemotingMessageServer.MessageQueue">
+            <summary>
+            A queue of messages in list string form.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.RemotingMessageServer.ServerEntry">
+            <summary>
+            An internal class to hold a properties of a TCP
+            <para/>channel used for .NET remoting.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.ServerEntry.tctPort">
+            <summary>
+            TCP port number to be used.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.ServerEntry.uriExtension">
+            <summary>
+            An uri extension e.g. "messageTest" to use for the communication.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.ServerEntry.onMessageEvent">
+            <summary>
+            An event that is fired when RemotingMessageServer.SendMessage gets called.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.ServerEntry.floodLimit">
+            <summary>
+            A limit for number of messages before the queue count
+            <para/>for messages is considered overflown before they
+            <para/>could be delegated via the GotMessage event.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.ServerEntry.maxChars">
+            <summary>
+            A limit of characters in a message before the message 
+            <para/>is considered overflown.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageServer.ServerEntry.channel">
+            <summary>
+            A TcpChannel given in the class constructor.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageServer.ServerEntry.UnregisterTCPChannel">
+            <summary>
+            Unregisters the the TcpChannel channel if registered in the ChannelServices.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageServer.ServerEntry.#ctor(System.Int32,System.String,VPKSoft.Utils.RemotingMessageServer.OnMessage,System.Runtime.Remoting.Channels.Tcp.TcpChannel,System.Int32,System.Int32)">
+            <summary>
+            A constructor for the ServerEntry class.
+            </summary>
+            <param name="TCPPort">TCP port number to be used for the communication.</param>
+            <param name="UriExtension">An uri extension e.g. "messageTest" to use for the communication.</param>
+            <param name="OnMessageEvent">An event that is fired when a RPC (Remote Procedure Call) is received.</param>
+            <param name="Channel">A TcpChannel which was ininitialized with a TCP port number.</param>
+            <param name="FloodLimit">A limit for number of messages before the queue count
+            <para/>for messages is considered overflown before they
+            <para/>could be delegated via the GotMessage event.</param>
+            <param name="MaxChars">A limit of characters in a message before the message 
+            <para/>is considered overflown.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageServer.ServerEntry.Match(System.Int32,System.String)">
+            <summary>
+            A Hepler function that checks if an instance of this class matches with given TCP port and uri excension.
+            </summary>
+            <param name="TCPPort">A TCP port number to check.</param>
+            <param name="UriExtension">An uri extension to check.</param>
+            <returns>True if the class instance matched the given parameters, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageServer.ServerEntry.GetMatch(System.Collections.Generic.List{VPKSoft.Utils.RemotingMessageServer.ServerEntry},System.Int32,System.String)">
+            <summary>
+            Gets a ServerEntry class instance that matches with given parameters.
+            </summary>
+            <param name="servers">A list of ServerEntry class instances to check.</param>
+            <param name="TCPPort">A TCP port number to check.</param>
+            <param name="UriExtension">An uri extension to check.</param>
+            <returns>A ServerEntry class instance if one matching the given parametes
+            <para/>was found in the given ServerEntry class instance list, otherwise null.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageServer.ServerEntry.ListMatch(System.Collections.Generic.List{VPKSoft.Utils.RemotingMessageServer.ServerEntry},System.Int32,System.String)">
+            <summary>
+            Gets a value indicating if a ServerEntry class instance exists that matches with given parameters.
+            </summary>
+            <param name="servers">A list of ServerEntry class instances to check.</param>
+            <param name="TCPPort">A TCP port number to check.</param>
+            <param name="UriExtension">An uri extension to check.</param>
+            <returns>True if one matching the given parametes
+            <para/>was found in the given ServerEntry class instance list, otherwise false.</returns>
+        </member>
+        <member name="P:VPKSoft.Utils.RemotingMessageServer.ServerEntry.GotParams">
+            <summary>
+            Gets or sets the value indicating if the ServerEntry class instance 
+            <para/>properties were read by a SendMessage method implementation of 
+            <para/>the RemotingMessageServer class instance.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.RemotingMessageServer.ServerEntry.Channel">
+            <summary>
+            A TcpChannel given in the class constructor.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.RemotingMessageServer.ServerEntry.FloodLimit">
+            <summary>
+            A limit for number of messages before the queue count
+            <para/>for messages is considered overflown before they
+            <para/>could be delegated via the GotMessage event.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.RemotingMessageServer.ServerEntry.MaxChars">
+            <summary>
+            A limit of characters in a message before the message 
+            <para/>is considered overflown.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.RemotingMessageServer.ServerEntry.TCPPort">
+            <summary>
+            A TCP port to be used with the communication.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.RemotingMessageServer.ServerEntry.UriExtension">
+            <summary>
+            An uri extension e.g. "messageTest" to use for the communication.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.RemotingMessageServer.ServerEntry.OnMessageEvent">
+            <summary>
+            An event that is fired when a RPC (Remote Procedure Call) is received.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.RemotingMessageServer.OnMessage">
+            <summary>
+            A delegate for the GotMessage event.
+            </summary>
+            <param name="message">A string message to pass with the GotMessage event.</param>
+        </member>
+        <member name="T:VPKSoft.Utils.RemotingMessageClient">
+            <summary>
+            A RPC (Remote Procedure Call) client that sends messages to a
+            <para/>corresponding client.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageClient.tcpPort">
+            <summary>
+            A TCP port number to be used for the communication.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageClient.uriExtension">
+            <summary>
+            An uri extension e.g. "messageTest" to use for the communication.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageClient.channel">
+            <summary>
+            A TcpChannel used for the communication.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.RemotingMessageClient.clientMessaging">
+            <summary>
+            An IMessageSender interface method created by an Activator class
+            <para/>to pass messages to the server.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageClient.UnregisterTCPChannel">
+            <summary>
+            A method to un-register a TCP channel used by this class instance.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageClient.#ctor(System.Int32,System.String)">
+            <summary>
+            A constructor for a RPC (Remote Procedure Call) client.
+            </summary>
+            <param name="TCPPort">A TCP port number to be used for the communication.</param>
+            <param name="UriExtension">An uri extension to be used for the communication.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageClient.SendMessage(System.String)">
+            <summary>
+            Sends a message to a RPC (Remote Procedure Call) server with
+            <para/>class instances TCP port number and uri extension.
+            </summary>
+            <param name="message">A message to send.</param>
+            <returns>True if the message was sent successfully, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.RemotingMessageClient.SendMessage(System.String,System.Int32,System.String)">
+            <summary>
+            Send a message to a RPC (Remote Procedure Call) server with
+            <para/>a given TCP port number and uri extension.
+            </summary>
+            <param name="message">A message to send.</param>
+            <param name="tcpPort">A TCP port to use for the communication.</param>
+            <param name="uriExtension">An uri extension to use for the communication.</param>
+            <returns>True if the message was sent successfully, otherwise false.</returns>
+        </member>
+        <member name="P:VPKSoft.Utils.RemotingMessageClient.TCPPort">
+            <summary>
+            Gets the TCP port number given in the class constructor.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.RemotingMessageClient.UriExtension">
+            <summary>
+            Gets the uri extension given in the class constructor.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.Misc">
+            <summary>
+            Misc utilities.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.Misc.AppType">
+            <summary>
+            The application type. 
+            <para/>WPF (for Windows Presentaton Foundation)
+            <para/>Winforms (for Windows Forms application)
+            <para/>Undefined (for throwing exceptions)
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.Misc.AppType.WPF">
+            <summary>
+            WPF (for Windows Presentaton Foundation)
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.Misc.AppType.Winforms">
+            <summary>
+            Winforms (for Windows Forms application)
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.Misc.AppType.ASP">
+            <summary>
+            And ASP.NET application
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.Misc.AppType.Undefined">
+            <summary>
+            Undefined (for throwing exceptions)
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.Paths">
+            <summary>
+            Some path utilities related to an "application".
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.Paths.GetAppSettingsFolder">
+            <summary>
+            Just returns the default writable data directory for "non-roaming" applications.
+            </summary>
+            <returns>A writable data directory for "non-roaming" applications.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Paths.GetAppSettingsFolder(VPKSoft.Utils.Misc.AppType)">
+            <summary>
+            Just returns the default writable data directory for "non-roaming" applications.
+            </summary>
+            <returns>A writable data directory for "non-roaming" applications.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Paths.MakeAppSettingsFolder">
+            <summary>
+            Generates and returns the default writable data directory for "non-roaming" applications.
+            </summary>
+            <returns>A writable data directory for "non-roaming" applications.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Paths.MakeAppSettingsFolder(VPKSoft.Utils.Misc.AppType)">
+            <summary>
+            Generates and returns the default writable data directory for "non-roaming" applications.
+            </summary>
+            <returns>A writable data directory for "non-roaming" applications.</returns>
+        </member>
+        <member name="P:VPKSoft.Utils.Paths.AppInstallDir">
+            <summary>
+            Returns the executable directory of an application.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.Strings">
+            <summary>
+            Extensions to string class.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.Strings.TrimEndCount(System.String,System.Char,System.Int32)">
+            <summary>
+            Trims a given amount of characters from a string's end.
+            </summary>
+            <param name="str">A string to trim.</param>
+            <param name="trimChar">A character to remove (trim).</param>
+            <param name="count">A number which indicates how many
+            <para/>characters to remove (trim) from a string.</param>
+            <returns>A string with trimmed from the end.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.Strings.TrimStartCount(System.String,System.Char,System.Int32)">
+            <summary>
+            Trims a given amount of characters from a string's start.
+            </summary>
+            <param name="str">A string to trim.</param>
+            <param name="trimChar">A character to remove (trim).</param>
+            <param name="count">A number which indicates how many
+            <para/>characters to remove (trim) from a string.</param>
+            <returns>A string with trimmed from the start.</returns>
+        </member>
+        <member name="T:VPKSoft.Utils.Utils">
+            <summary>
+            Utilities by VPKSoft.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.Utils.ASP">
+            <summary>
+            True if the application is a ASP.NET application.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.Utils.WinForms">
+            <summary>
+            True if the application is a Windows Forms Application
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.Utils.WPF">
+            <summary>
+            True if the application is a Windows Presentation Foundation application
+            </summary>
+        </member>
+        <member name="T:VPKSoft.Utils.VPKNml">
+            <summary>
+            A class for handling VPKSoft NOT markup language files = (VNml (*.vnml))).
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VersioStr10">
+            <summary>
+            An exception is thrown if the first line is not one of the(se) strings.
+            <para/>As versions grow, more will appear.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VersioStr">
+            <summary>
+            An array of acceptable version strings.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.nameSpace">
+            <summary>
+            A namespace to use.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.fileContents">
+            <summary>
+            Internal list for holding file section.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.#ctor">
+            <summary>
+            A constructor with no namespace to use.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.#ctor(System.String)">
+            <summary>
+            Constructor with a namespace.
+            </summary>
+            <param name="nameSpace">A namespace to use.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.Load(System.String)">
+            <summary>
+            Loads a vnml document.
+            </summary>
+            <param name="fileName">A file from which the vnml document should be loaded from.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.DeleteSections(System.String)">
+            <summary>
+            Deletes sections matching a given mask from the current namespace.
+            </summary>
+            <param name="mask">A string indicating sections to be deleted.
+            <para/>If an asterisk (*) mark is the last character, all sections
+            <para/>starting with the given mask are deleted.
+            <para/>If the give mask is an asterisk (*) character, all the contents will be deleted.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.DeleteValues(System.String,System.String)">
+            <summary>
+            Deletes values from a given section matching a given mask from the current namespace.
+            </summary>
+            <param name="section">A section to delete the values from in the current namespace.</param>
+            <param name="mask">A string indicating values to be deleted.
+            <para/>If an asterisk (*) mark is the last character, all values
+            <para/>starting with the given mask are deleted.
+            <para/>If the section has no values after the operation the section is also deleted.</param>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.SetComment(System.String,System.String,System.String[])">
+            <summary>
+            Sets a comment to a to a given section or to the section's value name. 
+            </summary>
+            <param name="name">A section name.</param>
+            <param name="valueName">A value name or null if the comment is to be given to a section.</param>
+            <param name="comment">A comment to set.</param>
+            <returns>True if the comment was successfully given, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.SetComment(System.Collections.Generic.List{System.String},System.String,System.String)">
+            <summary>
+            Sets a comment to a to a given section or to the section's value name. 
+            </summary>
+            <param name="comment">A comment to set.</param>
+            <param name="name">A section name.</param>
+            <param name="valueName">A value name or null if the comment is to be given to a section.</param>
+            <returns>True if the comment was successfully given, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.GetComment(System.String,System.String)">
+            <summary>
+            Gets a comment of a given section or a comment of the section's value name. 
+            </summary>
+            <param name="name">A section name.</param>
+            <param name="valueName">A value name or null if the section's comment is needed.</param>
+            <returns>A comment of a given section or a comment of the section's value name.
+            <para/>If a value or a section is not found, null is returned.</returns>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.Save(System.String)">
+            <summary>
+            Saves a vnml document.
+            </summary>
+            <param name="fileName">A file to which the vnml document should be saved to.</param>
+        </member>
+        <member name="P:VPKSoft.Utils.VPKNml.NameSpace">
+            <summary>
+            A namespace to use.
+            <remarks>White spaces in the name will be removed.</remarks>
+            </summary>
+        </member>
+        <member name="P:VPKSoft.Utils.VPKNml.Item(System.String,System.String,System.Object)">
+            <summary>
+            Gets an object with a given name and it's value name.
+            </summary>
+            <param name="name">A name of the object.</param>
+            <param name="valueName">A value name of the object</param>
+            <param name="defaultValue">A default value to return if the object was not found.</param>
+            <returns>The object in string presentation or
+            <para/>the default value if object with name and value name does not exist.</returns>
+            <remarks>If the value name starts with "BIN:" the value will
+            <para/>be returned as an array of bytes.</remarks>
+        </member>
+        <member name="P:VPKSoft.Utils.VPKNml.Item(System.String,System.String)">
+            <summary>
+            Gets or sets an object with a given name and it's value name.
+            </summary>
+            <param name="name">A name of the object.</param>
+            <param name="valueName">A value name of the object</param>
+            <returns>The object in string presentation or
+            <para/>null if object with name and value name does not exist.</returns>
+            <remarks>If the value name starts with "BIN:" the value will
+            <para/>be saved as hexadecimal string presentation
+            <para/>and returned as an array of bytes.</remarks>
+        </member>
+        <member name="T:VPKSoft.Utils.VPKNml.VmlEntry">
+            <summary>
+            An insternal class to hold a single section of the file.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VmlEntry.Name">
+            <summary>
+            The section name.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VmlEntry.Comments">
+            <summary>
+            Main level comments.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VmlEntry.Values">
+            <summary>
+            The section values.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.VmlEntry.#ctor(System.String)">
+            <summary>
+            Constructor for the VmlEntry class.
+            </summary>
+            <param name="name">The section name.</param>
+        </member>
+        <member name="T:VPKSoft.Utils.VPKNml.VmlSubEntry">
+            <summary>
+            An internal class to hold a single value of a single section of the file.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VmlSubEntry.Value">
+            <summary>
+            The value. 
+            </summary>
+        </member>
+        <member name="F:VPKSoft.Utils.VPKNml.VmlSubEntry.Comments">
+            <summary>
+            Comments givent to the value.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.Utils.VPKNml.VmlSubEntry.#ctor(System.Object,System.Collections.Generic.List{System.String})">
+            <summary>
+            The constructor for the internal class to hold
+            <para/>a single value of a single section of the file.
+            </summary>
+            <param name="value"></param>
+            <param name="comments"></param>
+        </member>
+    </members>
+</doc>

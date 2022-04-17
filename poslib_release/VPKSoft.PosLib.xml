@@ -1,0 +1,931 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VPKSoft.PosLib</name>
+    </assembly>
+    <members>
+        <member name="T:VPKSoft.PosLib.DefaultSize">
+            <summary>
+            A class holding a (default) size in X, Y, Width and Height values.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.DefaultSize.x">
+            <summary>
+            The x-coordinate.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.DefaultSize.y">
+            <summary>
+            The y-coordinate.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.DefaultSize.width">
+            <summary>
+            The width value of the size.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.DefaultSize.height">
+            <summary>
+            The height value of the size.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.DefaultSize.#ctor">
+            <summary>
+            A constructor for empty DefaultSize.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.DefaultSize.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            A constructor with given dimensions.
+            </summary>
+            <param name="x">The x-coordinate.</param>
+            <param name="y">The y-coordinate.</param>
+            <param name="width">The width value of the size.</param>
+            <param name="height">The height value of the size.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.DefaultSize.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            A constructor with given dimensions as double values
+            <para/>which will be truncated to integer values.
+            </summary>
+            <param name="x">The x-coordinate.</param>
+            <param name="y">The y-coordinate.</param>
+            <param name="width">The width value of the size.</param>
+            <param name="height">The height value of the size.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.DefaultSize.ToFormBounds">
+            <summary>
+            Converts the size this class instance holds to a WinForms Form suitable boundaries.
+            </summary>
+            <returns>A System.Drawing.Rectangle class instance converted from this class instance.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.DefaultSize.ToWindowBounds">
+            <summary>
+            Converts the size this class instance holds to a WPF Window suitable boundaries.
+            </summary>
+            <returns>A System.Windows.Rect class instance converted from this class instance.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.DefaultSize.ToString">
+            <summary>
+            Converts the size this class instance holds to a string value which can be
+            <para/>converted back with the static methdod called Parse.
+            </summary>
+            <returns>The size in string format. For example [X=609, Y=601,Width=691,Height=431].</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.DefaultSize.Parse(System.String)">
+            <summary>
+            Converts a string presentation of the size to a
+            <para/>new instance of this class.
+            </summary>
+            <param name="s">A string to parse.</param>
+            <returns>An instance of this class with a size in the given string.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.DefaultSize.IsEmpty">
+            <summary>
+            Gets a value indicating if the size is empty (x, y, width and height are all 0-valued).
+            </summary>
+            <returns>True if the size is empty, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.DefaultSize.TryParse(System.String,VPKSoft.PosLib.DefaultSize@)">
+            <summary>
+            Same as the Parse method, except there is no exception
+            <para/>thrown if the size conversion from string failed.
+            </summary>
+            <param name="s">A string to parse.</param>
+            <param name="result">An instance of this class with a size in the given string or null in case of failure.</param>
+            <returns>True if the operation succeeded, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.DefaultSize.#ctor(System.Windows.Forms.Form)">
+            <summary>
+            A constructor that initializes this class with WinForms Form RestoreBounds property.
+            </summary>
+            <param name="form">A System.Windows.Form class instance.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.DefaultSize.#ctor(System.Windows.Window)">
+            <summary>
+            A constructor that initializes this class with WPF Window RestoreBounds property.
+            </summary>
+            <param name="window">A System.Windows.Window class instance.</param>
+        </member>
+        <member name="T:VPKSoft.PosLib.PositionCore">
+            <summary>
+            The core functionality for Windows Forms and Windows Presentation Foundation
+            <para/>application window/form position saving.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.formWindowDefaults">
+            <summary>
+            An internal list of WinForms or WPF windows to be included in the PosLib's size recording.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.EnumerableTypes">
+            <summary>
+            Types, which values to save if they exist in the list and their
+            <para/>names are listed in case of WinForms in the SaveFormProperties list and
+            <para/>in case of WPF in the SaveWindowProperties array.
+            <remarks>Collection property definitions can get their own TypeDescriptor class
+            <para/>instance from an item in a collection or from a CustomTypeDescriptors list.</remarks>
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.CustomTypeConverters">
+            <summary>
+            A list of TypeConverter class instances paired to a type.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.CustomTypeConverterExists(System.Type)">
+            <summary>
+            Gets a value indicating if the CustomTypeConverters list contains a TypeConverter for a given type.
+            </summary>
+            <param name="type">A type to check for a TypeDescriptor.</param>
+            <returns>True if the CustomTypeConverters list contains a TypeConverter for a given type, otherwise false.</returns>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.DPIChanged">
+            <summary>
+            Indicates if the DPI setting was changed after the last application start.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.screensChanded">
+            <summary>
+            Indicates if the screen setting changed after the last application start.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.skipLoadOnScreenChanged">
+            <summary>
+            A value indicating if a form/window position load
+            <para/>should be skipped if screen setting changed after the last application start.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.Bind">
+            <summary>
+            Loads default data and attaches a SystemEvents.DisplaySettingsChanged event handler.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.UnBind">
+            <summary>
+            Releases all attached event handlers by the PosLib library and saves default data.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.GetCustomTypeConverter(System.Type)">
+            <summary>
+            Gets a custom TypeConverter class instance contained in the CustomTypeConverters list.
+            </summary>
+            <param name="type">A System.Type to get a TypeConverter class instance for.</param>
+            <returns>A TypeConverter class instance if found, otherwise null.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.GetCustomTypeConverterOrDefault(System.Object)">
+            <summary>
+            Gets a custom TypeConverter class instance contained in the CustomTypeConverters list.
+            <para/>If the CustomTypeConverters list does not contain a TypeConverter for the given object,
+            <para/>the the TypeDescriptor.GetConverter method is used to get a TypeConverter.
+            </summary>
+            <param name="value">An object to get a TypeConverter class instance for.</param>
+            <returns>A TypeConverter class instance.</returns>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.getTypeDescriptors">
+            <summary>
+            A value indicating if the TypeDescriptor.GetConverter method
+            <para/>should be used to get a TypeDescriptor for 
+            <para/>value-string-value conversion.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.excludeTypeConversionExceptions">
+            <summary>
+            A value indicating if exceptions occurring while
+            <para/>converting from a type to string or from a string to type
+            <para/>should be handled internally.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.RaisePoslibException(System.Object,System.Exception)">
+            <summary>
+            Raises the PosLibException event if any handlers are attached to it. 
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="ex">An exception to forward with the event.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.ToFormWindowState(VPKSoft.PosLib.PositionCore.WindowState)">
+            <summary>
+            Converts a WindowState enumeration declared in this
+            <para/>class to a System.Windows.Forms.FormWindowState enumeration.
+            </summary>
+            <param name="state">A WindowState to convert.</param>
+            <returns>A System.Windows.Forms.FormWindowState enumeration value.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.ToWindowWindowState(VPKSoft.PosLib.PositionCore.WindowState)">
+            <summary>
+            Converts a WindowState enumeration declared in this
+            <para/>class to a System.Windows.WindowState enumeration.
+            </summary>
+            <param name="state">A WindowState to convert.</param>
+            <returns>A System.System.Windows.WindowState enumeration value.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.GetWindowState(System.Windows.Forms.Form)">
+            <summary>
+            Gets a WindowState of a given WinForms Form instance
+            <para/>and converts it to a WindowState enumeration declared in this class.
+            </summary>
+            <param name="form">A WinForms Form class instance.</param>
+            <returns>A WindowState enumeration value.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.GetWindowState(System.Windows.Window)">
+            <summary>
+            
+            </summary>
+            <param name="window"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.GetUidElements(System.Windows.FrameworkElement)">
+            <summary>
+            Gets all FrameworkElement class instance children of a given 
+            <para/>FrameworkElement class instance recursively, which have an assigned x:Uid, x:Name or Tag (Name=objectName).
+            </summary>
+            <param name="element">A class instace which is or is inherited from a FrameworkElement class.</param>
+            <returns>A list of FrameworkElement class instances with an assinged x:Uid or x:Name.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.GetObjects(System.Windows.DependencyObject)">
+            <summary>
+            Gets all DependencyObject class instances from a given
+            <para/>base DependencyObject class instance.
+            </summary>
+            <param name="obj">A DependencyObject class instance.</param>
+            <returns>A list of DependencyObject class instances from a given base DependencyObject class instance.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.TryGetNameWPF(System.Object,System.Object)">
+            <summary>
+            An helper to get some string "reference" for a WPF object through reflection.
+            </summary>
+            <param name="obj">A WPF object.</param>
+            <param name="fallBack">A fallback object, which string representation to get if no string "reference" was gotten otherwise.</param>
+            <returns>A string "reference" of a given WPF object
+            <para/>in this order: Uid, Name, Tag (Tag=Name=...), fallback object's string representation.
+            <para/>NOTE: An empty string may still be returned if the fallback object is null or the 
+            <para/>fallback object's string representation is an empty string.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.TryGetName(System.Object,System.Object)">
+            <summary>
+            An helper to get a string "reference" for an object through reflection.
+            </summary>
+            <param name="obj">An object, which string "reference" to get.</param>
+            <param name="fallBack">A fallback object, which string representation to get if no string "reference" was gotten otherwise.</param>
+            <returns>A string "reference" of a given object
+            <para/>in this order: Name, Tag (Tag=Name=...), fallback object's string representation.
+            <para/>NOTE: An empty string may still be returned if the fallback object is null or 
+            <para/>the fallback object's string representation is an empty string.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.LoadConversions">
+            <summary>
+            Load the type - value pairs defined in PosLib.vnml file if any.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.PosLib.PositionCore.SkipLoadScreen">
+            <summary>
+            Gets a value indicating if a form/window position load
+            <para/>should be skipped.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.PosLib.PositionCore.SkipLoadOnScreenChange">
+            <summary>
+            Gets or sets a value indicating if a form/window position load
+            <para/>should be skipped if screen setting changed after the last application start.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.PosLib.PositionCore.SkipLoad">
+            <summary>
+            Gets a value if the PosLib should skip loading the position data.
+            <para/>This is indicated with giving a command line argument --skipPos
+            <para/>for the application's command line.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.PosLib.PositionCore.GetTypeDescriptors">
+            <summary>
+            Gets or sets a value indicating if the TypeDescriptor.GetConverter 
+            <para/>method should be used to get a TypeDescriptor for 
+            <para/>value-string-value conversion.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.PosLib.PositionCore.ExcludeTypeConversionExceptions">
+            <summary>
+            Gets or sets a value indicating if exceptions occurring while
+            <para/>converting from a type to string or from a string to type
+            <para/>should be handled internally.
+            </summary>
+        </member>
+        <member name="E:VPKSoft.PosLib.PositionCore.PosLibException">
+            <summary>
+            An event which is fired on an exception if exception handling
+            <para/> is set to be internal within the PosLib library.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.PosLib.PositionCore.AssemblyFile">
+            <summary>
+            Gets the file name and path of the PosLib library.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.PosLib.PositionCore.AssemblyPath">
+            <summary>
+            Gets the path of the PosLib library.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.PosLib.PositionCore.PosLibExceptionEventArgs">
+            <summary>
+            A class for passing internal exception information trough an event to the user code.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.PosLibExceptionEventArgs.ex">
+            <summary>
+            An exception to pass.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionCore.PosLibExceptionEventArgs.#ctor(System.Exception)">
+            <summary>
+            A class constructor for the PosLibExceptionEventArgs class.
+            </summary>
+            <param name="ex">An exception to be passed with an event.</param>
+        </member>
+        <member name="T:VPKSoft.PosLib.PositionCore.OnPosLibException">
+            <summary>
+            A delegate for an event to pass internal exception information trough an event to the user code
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A PosLibExceptionEventArgs class instance indicating the internal exception.</param>
+        </member>
+        <member name="T:VPKSoft.PosLib.PositionCore.WindowDefaults">
+            <summary>
+            A class containg default parameters to a WinForms Form ar to a WPF Window.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.WindowDefaults.DefaultSize">
+            <summary>
+            A default size for a Form or a Window.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.WindowDefaults.DefaultSizemode">
+            <summary>
+            An enumeration indicating how a Form or a Window size should be
+            <para/>handled if it gets out of screen boundaries.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.WindowDefaults.LastState">
+            <summary>
+            A last Form or Window state.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.PosLib.PositionCore.WindowState">
+            <summary>
+            A wrapper to store System.Windows.Forms.FormWindowState and
+            <para/>System.Windows.WindowState enumerations for convinience.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.WindowState.StateMaximized">
+            <summary>
+            A window or form state is maximized.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.WindowState.StateNormal">
+            <summary>
+            A window or form state is normal.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.WindowState.StateMinimized">
+            <summary>
+            A window or form state is minimized.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.PosLib.PositionCore.SizeChangeMode">
+            <summary>
+            An enumeration to describe how a Form or a Window
+            <para/>should be resized if it gets out of screen's boundaries.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.SizeChangeMode.ResizeFit">
+            <summary>
+            A Form or a Window should be resized to fit the screen.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionCore.SizeChangeMode.MoveTopLeft">
+            <summary>
+            The top and left position of the Form or a Window should
+            <para/>be adjusted so that an interaction with it is possible.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.PosLib.PositionForms">
+            <summary>
+            A class for saving and loading a WinForms Form class instance positioning information.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.Add(System.Windows.Forms.Form,VPKSoft.PosLib.PositionCore.SizeChangeMode)">
+            <summary>
+            Ads a WinForms form to the list of forms to which position is to be saved and loaded within the PosLib library.
+            </summary>
+            <param name="form">A WinForms form to be added to positioning.</param>
+            <param name="szm">An enumeration to describe how a Form or a Window
+            <para/>should be resized if it gets out of screen's boundaries.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.SavePosition(System.Windows.Forms.Form)">
+            <summary>
+            Saves a form position to a vnml (VPKNml) file (position.vnml) under
+            <para/>the %LOCALAPPDATA%\[host application product name] folder.
+            </summary>
+            <param name="form">A Form class instance which position to save.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.ResetPosition(System.Windows.Forms.Form)">
+            <summary>
+            Deletes a form position data from a vnml (VPKNml) file (position.vnml) under
+            <para/>the %LOCALAPPDATA%\[host application product name] folder.
+            <para/>Also all event handlers related to saving the forms position are detached.
+            </summary>
+            <param name="form">A form which position to "reset".</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.ResetPositionData(System.Windows.Forms.Form)">
+            <summary>
+            Deletes a form position data from a vnml (VPKNml) file (position.vnml) under
+            <para/>the %LOCALAPPDATA%\[host application product name] folder.
+            </summary>
+            <param name="form">A form which position to "reset".</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.LoadPosition(System.Windows.Forms.Form)">
+            <summary>
+            Loads a form position from a vnml (VPKNml) file (position.vnml) under
+            <para/>the %LOCALAPPDATA%\[host application product name] folder.
+            </summary>
+            <param name="form">A Form class instance which position to load.</param>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionForms.SaveFormProperties">
+            <summary>
+            A list of types and their value to be loaded/saved to a position.vnml file.
+            <remarks>If a string describing a a property value starts
+            <para/>with [] (square brackets) the value is considered as a collection,
+            <para/>which can be cast to IList interface for enumeration.</remarks>
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.SetResizeEvents(System.Windows.Forms.Form,System.Boolean,System.Boolean)">
+            <summary>
+            Attach or detach event handlers from a given form
+            <para/>relating to form sizing and resizing.
+            </summary>
+            <param name="form">A form to attach to or detach from the event handlers.</param>
+            <param name="attach">Whether to attach or to detach.</param>
+            <param name="leaveResizeReaction">
+            Indicates if the capability to react to resize operation should left attached on detach.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.ResizeFit(System.Windows.Forms.Form)">
+            <summary>
+            Resizes a form to fit to screen based on the DefaultSizemode enumeration.
+            </summary>
+            <param name="form">A form to resize.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.HaltResize(System.Windows.Forms.Form)">
+            <summary>
+            Detaches all event handlers monitoring a form resizing.
+            <para/>This is used when the form size is being set programmatically.
+            </summary>
+            <param name="form">A form to detach the event handlers from.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.ContinueResize(System.Windows.Forms.Form)">
+            <summary>
+            Attaches all event handlers monitoring a form resizing.
+            <para/>This is used after the form size was set set programmatically.
+            </summary>
+            <param name="form">A form to attach the event handlers to.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.form_Resize(System.Object,System.EventArgs)">
+            <summary>
+            Saves the last window state of a form before it is changed to a new value.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.form_Disposed(System.Object,System.EventArgs)">
+            <summary>
+            Detach all avent handlers from a form when it's destroyed.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.form_Shown(System.Object,System.EventArgs)">
+            <summary>
+            An event handler attached to form's Shown event.
+            <para/>This load the positioning data from a file and sets it to the form.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.form_ResizeEnd(System.Object,System.EventArgs)">
+            <summary>
+            This event handler gets fired after a form has been resized.
+            <para/>The form size is afterwards resized programmatically if needed.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.Form_FormClosed(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            <summary>
+            Saves to form position after it was closed.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.SetScreenChangeHandler">
+            <summary>
+            Attaches an event handler for the SystemEvents.DisplaySettingsChanged
+            <para/>to handle all application forms after display settings changed.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.ReleaseAllHandlers">
+            <summary>
+            Detaches all event handlers relating to window sizing and resizing of all open application forms.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.DisplaySettingsChanged(System.Object,System.EventArgs)">
+            <summary>
+            Occurs when the user changes the display settings.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionForms.ReleaseScreenChangeHandler">
+            <summary>
+            Detaches the event handler for the SystemEvents.DisplaySettingsChanged event.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.PosLib.PositionsWindow">
+            <summary>
+            A class for saving and loading a WPF Window class instance positioning information.
+            </summary>    
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.Add(System.Windows.Window,VPKSoft.PosLib.PositionCore.SizeChangeMode)">
+            <summary>
+            Ads a WPF window to the list of windows to which position is to be saved and loaded within the PosLib library.
+            </summary>
+            <param name="window">A WPF window to be added to positioning.</param>
+            <param name="szm">An enumeration to describe how a Form or a Window
+            <para/>should be resized if it gets out of screen's boundaries.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.SavePosition(System.Windows.Window)">
+            <summary>
+            Saves a window position to a vnml (VPKNml) file (position.vnml) under
+            <para/>the %LOCALAPPDATA%\[host application product name] folder.
+            </summary>
+            <param name="window">A Window class instance which position to save.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.ResetPosition(System.Windows.Window)">
+            <summary>
+            Deletes a window position data from a vnml (VPKNml) file (position.vnml) under
+            <para/>the %LOCALAPPDATA%\[host application product name] folder.
+            <para/>Also all event handlers related to saving the window position are detached.
+            </summary>
+            <param name="window">A window which position to "reset".</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.ResetPositionData(System.Windows.Window)">
+            <summary>
+            Deletes a window position data from a vnml (VPKNml) file (position.vnml) under
+            <para/>the %LOCALAPPDATA%\[host application product name] folder.
+            </summary>
+            <param name="window">A window which position to "reset".</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.dt_Tick(System.Object,System.EventArgs)">
+            <summary>
+            A dispatcher timer event handler that simulates System.Windows.Forms.Form ResizeEnd event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionsWindow.ResizeTimers">
+            <summary>
+            A list of Window-DispatcherTimer pairs to emulate WinForms ResizeEnd event.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.LoadPosition(System.Windows.Window)">
+            <summary>
+            Loads a window position from a vnml (VPKNml) file (position.vnml) under
+            <para/>the %LOCALAPPDATA%\[host application product name] folder.
+            </summary>
+            <param name="window">A Window class instance which position to load.</param>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionsWindow.SaveWindowProperties">
+            <summary>
+            A list of type names and their value to be loaded/saved to a position.vnml file.
+            <remarks>If a string describing a property value starts
+            <para/>with [] (square brackets) the value is considered as a collection,
+            <para/>which can be cast to IList interface for enumeration.</remarks>
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionsWindow.Casts">
+            <summary>
+            A List of KeyValuePair class instances which hold the
+            <para/>predefined casts from Type to Type instructed by the TypeCast class.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.SetResizeEvents(System.Windows.Window,System.Boolean,System.Boolean)">
+            <summary>
+            Attach or detach event handlers from a given window
+            <para/>relating to window sizing and resizing.
+            </summary>
+            <param name="window">A window to attach to or detach from the event handlers.</param>
+            <param name="attach">Whether to attach or to detach.</param>
+            <param name="leaveResizeReaction">
+            Indicates if the capability to react to resize operation should left attached on detach.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.ResizeFit(System.Windows.Window)">
+            <summary>
+            Resizes a window to fit to screen based on the DefaultSizemode enumeration.
+            </summary>
+            <param name="window">A window to resize.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.HaltResize(System.Windows.Window)">
+            <summary>
+            Detaches all event handlers monitoring a window resizing.
+            <para/>This is used when the window size is being set programmatically.
+            </summary>
+            <param name="window">A window to detach the event handlers from.</param>    
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.ContinueResize(System.Windows.Window)">
+            <summary>
+            Attaches all event handlers monitoring a window resizing.
+            <para/>This is used after the window size was set set programmatically.
+            </summary>
+            <param name="window">A window to attach the event handlers to.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.window_SizeChanged(System.Object,System.Windows.SizeChangedEventArgs)">
+            <summary>
+            Sets the emulated WinForms style ResizeEnd event to launch.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.QueueDelayedResize(System.Windows.Window)">
+            <summary>
+            Sets the emulated WinForms style ResizeEnd event to launch.
+            </summary>
+            <param name="window">A window which "ResizeEnd" event is set to simulate.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.window_LocationChanged(System.Object,System.EventArgs)">
+            <summary>
+            Sets the emulated WinForms style ResizeEnd event to launch.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.Window_Closed(System.Object,System.EventArgs)">
+            <summary>
+            Detach all avent handlers from a window when it's closed (assumed to be desroyed too).
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.Window_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            An event handler attached to window's Loaded event.
+            <para/>This loads the positioning data from a file and sets it to the window.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.SetScreenChangeHandler">
+            <summary>
+            Attaches an event handler for the SystemEvents.DisplaySettingsChanged
+            <para/>to handle all application windows after display settings changed.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.ReleaseAllHandlers">
+            <summary>
+            Detaches all event handlers relating to window sizing and resizing of all open application windows.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.DisplaySettingsChanged(System.Object,System.EventArgs)">
+            <summary>
+            Occurs when the user changes the display settings.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.ReleaseScreenChangeHandler">
+            <summary>
+            Detaches the event handler for the SystemEvents.DisplaySettingsChanged event.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.PosLib.PositionsWindow.TypeCast">
+            <summary>
+            A class to hold internal type cast definitions.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionsWindow.TypeCast.AssemblyTypeIn">
+            <summary>
+            An assembly where the type to convert to resides in.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionsWindow.TypeCast.NamespaceName">
+            <summary>
+            A type name with a namespace of a target type.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionsWindow.TypeCast.Property">
+            <summary>
+            A property name which value to cast.
+            <para/>An empty string means that the object it self will be cast to another type.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.PosLib.PositionsWindow.TypeCast.OnWindowProperty">
+            <summary>
+            A string referencing to the SaveWindowProperties list to determine
+            <para/>when a cast is required.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.PositionsWindow.TypeCast.#ctor(System.Reflection.Assembly,System.String,System.String,System.String)">
+            <summary>
+            The constructor.
+            </summary>
+            <param name="assemblyTypeIn">The assembly the target type is in.</param>
+            <param name="namespaceName">A name with a namespace of type to cast from to another type
+            <para/>residing in <paramref name="assemblyTypeIn"/>.</param>
+            <param name="property">A property name which value to cast.
+            <para/>An empty string means that the object it self will be cast to another type.</param>
+            <param name="onWindowProperty">A string referencing to the SaveWindowProperties list to determine
+            <para/>when a cast is required.</param>
+        </member>
+        <member name="P:VPKSoft.PosLib.PositionsWindow.TypeCast.TypeFromName">
+            <summary>
+            Gets the System.Type from the assembly AssemblyTypeIn containing a type named NamespaceName.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.PosLib.ScreenUtils">
+            <summary>
+            Utilities for to detect visual objects current
+            <para/>screen or screen index. 
+            <para/>Some detection methods as "is something" on some screen are also included.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.IsOnScreen(System.Windows.Forms.Form)">
+            <summary>
+            Gets a value indicating if the form is on a screen.
+            <para/>States Maximized and Minimized are considered to be true.
+            </summary>
+            <param name="form">A form to check.</param>
+            <returns>True if the form is on a screen, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.IsOnScreen(System.Windows.Window)">
+            <summary>
+            Gets a value indicating if the window is on a screen.
+            <para/>States Maximized and Minimized are considered to be true.
+            </summary>
+            <param name="window">A window to check.</param>
+            <returns>True if the window is on a screen, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.IsInScreen(System.Windows.Forms.Form)">
+            <summary>
+            Gets a value indicating if the form is completely inside a screen boundaries.
+            <para/>States Maximized and Minimized are considered to be true.
+            </summary>
+            <param name="form">A form to check.</param>
+            <returns>True if the form is in a screen, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetScreenOn(System.Windows.Forms.Form)">
+            <summary>
+            Gets the screen the form is currently on.
+            </summary>
+            <param name="form">A form to check.</param>
+            <returns>The screen the form is currently on
+            <para/>or null if the form isn't currently on any screen.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetScreenOnDefault(System.Windows.Forms.Form)">
+            <summary>
+            Gets the screen the form is currently on or Screen.PrimaryScreen 
+            <para/>if the form isn't currently on any screen.
+            </summary>
+            <param name="form">A form to check.</param>
+            <returns>The screen the form is currently on
+            <para/>or Screen.PrimaryScreen if the form isn't currently on any screen.</returns>  
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetScreenOnDefault(System.Windows.Window)">
+            <summary>
+            Gets the screen the window is currently on or Screen.PrimaryScreen 
+            <para/>if the window isn't currently on any screen.
+            </summary>
+            <param name="window">A window to check.</param>
+            <returns>The screen the window is currently on
+            <para/>or Screen.PrimaryScreen if the window isn't currently on any screen.</returns>  
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetCurrent(System.IntPtr)">
+            <summary>
+            Returns a current screen for a given IntPtr handle.
+            </summary>
+            <param name="hwnd">An IntPtr handle for a visual object which screen to get.</param>
+            <returns>A screen the object is currently on.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetCurrent(System.Windows.Forms.Form)">
+            <summary>
+            Returns a current screen for a given form.
+            </summary>
+            <param name="form">A form which screen to get.</param>
+            <returns>A screen the form is currently on.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetCurrent(System.Windows.Window)">
+            <summary>
+            Returns a current screen for a given window.
+            </summary>
+            <param name="window">A window which screen to get.</param>
+            <returns>A screen the window is currently on.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetCurrent(System.Drawing.Point)">
+            <summary>
+            Returns a current screen for a given point.
+            </summary>
+            <param name="p">A System.Drawing.Point which screen to get.</param>
+            <returns>A screen the given point is currently on.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetCurrent(System.Windows.Point)">
+            <summary>
+            Returns a current screen for a given point.
+            </summary>
+            <param name="p">A System.Windows.Point which screen to get.</param>
+            <returns>A screen the given point is currently on.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetCurrent(System.Drawing.Rectangle)">
+            <summary>
+            Returns a current screen for a given rectangle.
+            </summary>
+            <param name="r">A System.Drawing.Rectangle which screen to get.</param>
+            <returns>A screen the given rectangle is currently on.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetCurrent(System.Windows.Rect)">
+            <summary>
+            Returns a current screen for a given rectangle.
+            </summary>
+            <param name="r">A System.Windows.Rect which screen to get.</param>
+            <returns>A screen the given rectangle is currently on.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetScreenIndex(System.Windows.Forms.Form)">
+            <summary>
+            Returns a screen index from a Screen.AllScreens array the given form is currently on.
+            </summary>
+            <param name="form">A form which screen index to get.</param>
+            <returns>An integer index in the Screen.AllScreens array the form is currently on.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetScreenIndex(System.Windows.Window)">
+            <summary>
+            Returns a screen index from a Screen.AllScreens array the given window is currently on.
+            </summary>
+            <param name="window">A window which screen index to get.</param>
+            <returns>An integer index in the Screen.AllScreens array the window is currently on.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetScreenIn(System.Windows.Forms.Form)">
+            <summary>
+            Gets a screen the given form is currently in.
+            </summary>
+            <param name="form">A form which screen to get.</param>
+            <returns>A screen the form is currently in or null,
+            <para/>if none of the screens math the given form's boundaries.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetScreenOn(System.Windows.Window)">
+            <summary>
+            Gets the screen the window is currently on.
+            </summary>
+            <param name="window">A window to check.</param>
+            <returns>The screen the window is currently on
+            <para/>or null if the window isn't currently on any screen.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.ScreenUtils.GetDPI">
+            <summary>
+            Gets the system DPI setting.
+            </summary>
+            <returns>A PointF structure representing the system DPI setting.</returns>
+        </member>
+        <member name="T:VPKSoft.PosLib.WindowHelper">
+            <summary>
+            A class containing some extension methods for System.Windows.Window
+            <para/>and System.Windows.FrameworkElement.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.PosLib.WindowHelper.SetSize(System.Windows.Window,System.Windows.Rect)">
+            <summary>
+            Sets a Window size to a given Rect structure.
+            </summary>
+            <param name="wnd">A System.Windows.Window class instance.</param>
+            <param name="size">A System.Windows.Rect structure describing the Window size.</param>
+        </member>
+        <member name="M:VPKSoft.PosLib.WindowHelper.GetSize(System.Windows.Window)">
+            <summary>
+            Gets a Window size as a Rect structure.
+            </summary>
+            <param name="wnd">A System.Windows.Window class instance.</param>
+            <returns>A System.Windows.Rect structure describing the Window size.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.WindowHelper.GetRefName(System.Windows.DependencyObject)">
+            <summary>
+            Gets a "name" to reference a DependencyObject class instance with.
+            </summary>
+            <param name="obj">A DependencyObject class instance which "name" to get.</param>
+            <returns>A string to refrerence a given DependencyObject class instance with.
+            <para/>A string reference is gotten in the following order: Uid, Name, Tag (Tag=Name=...).
+            <para/>All mentioned members being empty an empty string is returned.</returns>
+        </member>
+        <member name="M:VPKSoft.PosLib.WindowHelper.GetRefName(System.Windows.FrameworkElement)">
+            <summary>
+            Gets a "name" to reference a FrameworkElement class instance with.
+            </summary>
+            <param name="element">A FrameworkElement class instance which "name" to get.</param>
+            <returns>A string to refrerence a given FrameworkElement class instance with.
+            <para/>A string reference is gotten in the following order: Uid, Name, Tag (Tag=Name=...).
+            <para/>All mentioned members being empty an empty string is returned.</returns>
+        </member>
+    </members>
+</doc>

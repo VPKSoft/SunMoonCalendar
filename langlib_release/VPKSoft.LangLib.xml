@@ -1,0 +1,1056 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VPKSoft.LangLib</name>
+    </assembly>
+    <members>
+        <member name="T:VPKSoft.LangLib.AppType">
+            <summary>
+            The application type. 
+            <para/>WPF (for Windows Presentaton Foundation)
+            <para/>Winforms (for Windows Forms application)
+            <para/>Undefined (for throwing exceptions)
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.AppType.WPF">
+            <summary>
+            WPF (for Windows Presentaton Foundation)
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.AppType.Winforms">
+            <summary>
+            Winforms (for Windows Forms application)
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.AppType.Undefined">
+            <summary>
+            Undefined (for throwing exceptions)
+            </summary>
+        </member>
+        <member name="T:VPKSoft.LangLib.DBLangEngine">
+            <summary>
+            A class to enumerate Form / Window objects and properties.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.LangLib.GuiObjectsEnum">
+            <summary>
+            A class to enumerate given form / window
+            items / properties for localization.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObjectsEnum.wfObjects">
+            <summary>
+            Internal list for the GuiObject class instances.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObjectsEnum.nameSpaces">
+            <summary>
+            Internal list of name spaces to use to
+            <para/>separate which object to enumerate.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObjectsEnum.DeniedObjectNames">
+            <summary>
+            A list of denied objects which should not be enumerated.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObjectsEnum.thisForm">
+            <summary>
+            A place holder for a System.Windows.Forms.Form
+            <para/>class instance.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObjectsEnum.thisWindow">
+            <summary>
+            A place holder for a System.Windows.Window
+            <para/>class instance.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.#ctor(System.Windows.Forms.Form)">
+            <summary>
+            The class constuctor based on a 
+            <para/>System.Windows.Forms.Form class instance.
+            </summary>
+            <param name="form">An instance of System.Windows.Forms.Form class.</param>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObjectsEnum.useUids">
+            <summary>
+            Whether to use x:Uid's to reference to a FrameworkElement class instance.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.#ctor(System.Windows.Window,System.Boolean)">
+            <summary>
+            The class constuctor based on a 
+            <para/>System.Windows.Window class instance.
+            </summary>
+            <param name="window">An instance of System.Windows.Window class.</param>
+            <param name="useUids">Whether to use x:Uid's to reference to a FrameworkElement class instance.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.InitNameSpaces">
+            <summary>
+            Intializes the default name spaces
+            allowed for object enumeration.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.AddGuiObject(VPKSoft.LangLib.GuiObject)">
+            <summary>
+            Adds a new GuiObject class instance to the internal list.
+            </summary>
+            <param name="go">A GuiObject class instance.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.Clear(System.Boolean)">
+            <summary>
+            Clears the object cache if the <paramref name="clear"/> is
+            <para/>as true.
+            </summary>
+            <param name="clear">Wether to clear the object cache or not.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.AddNameSpace(System.String)">
+            <summary>
+            Adds a new allowed name spaces for
+            <para/>object enumeration.
+            <para/><para/>The default name spaces are
+            <para/>System.Windows.Forms and
+            <para/>System.Windows.Controls.*, so wildcards
+            <para/>are allowed at the end of the name space name.
+            </summary>
+            <param name="nameSpace">A names space name to add to the allowed namespace list.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.ClearNamespaces">
+            <summary>
+            Clears the list of allowed name spaces for
+            <para/>object enumeration.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.GetObjects(System.Windows.Forms.Form,System.Globalization.CultureInfo,System.Boolean,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the items and properties of a given form / window
+            <para/>based on the allowed name spaces and allowed type lists.
+            </summary>
+            <param name="form">An instance of System.Windows.Forms.Form class
+            <para/>which items / properties to get.</param>
+            <param name="culture">A culture to "mark" the internal object list.</param>
+            <param name="clear">Wether to clear previously enumerated objects or not.</param>
+            <param name="propertyNames">A nems of the properties to include in the object list.
+            <para/>If the value is null, no property names are prevented.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.GetUidElements(System.Windows.FrameworkElement)">
+            <summary>
+            Gets all FrameworkElement class instance children of a given 
+            <para/>FrameworkElement class instance recursively, which have an assigned x:Uid.
+            </summary>
+            <param name="element">A class instace which is or is inherited from a FrameworkElement class.</param>
+            <returns>A list of FrameworkElement class instances with an assinged x:Uid.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.GetObjects(System.Windows.Window,System.Globalization.CultureInfo,System.Boolean,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the items and properties of a given form / window
+            <para/>based on the allowed name spaces and allowed type lists.
+            </summary>
+            <param name="window">An instance of System.Windows.Window class
+            <para/>which items / properties to get.</param>
+            <param name="culture">A culture to "mark" the internal object list.</param>
+            <param name="clear">Wether to clear previously enumerated objects or not.</param>
+            <param name="propertyNames">A nems of the properties to include in the object list.
+            <para/>If the value is null, no property names are prevented.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.NameSpaceMatch(System.String)">
+            <summary>
+            Checks if the given name space name matches
+            <para/>the classes internal list.
+            </summary>
+            <param name="nameSpace">The name of the name space to the
+            <para/>internal name space list.</param>
+            <returns>True if the given name space name matches the
+            <para/>the internal name space list, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.SetObject(System.Object,System.String,System.String,System.Object)">
+            <summary>
+            Sets the items and properties of a given object
+            <para/>based on the allowed name spaces and allowed type lists.
+            </summary>
+            <param name="baseObject">The base object which to enumerate.</param>
+            <param name="item">A name of the object which named value to set.</param>
+            <param name="valueName">A value name of which value to set.</param>
+            <param name="value">A value to set if found by item and valueName.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.HandlePropertiesSet(System.Reflection.PropertyInfo[],System.Object,System.String,System.String,System.Object,System.String)">
+            <summary>
+            Handles the internal logic of the SetObject method.
+            </summary>
+            <param name="piArr">An array of PropertyInfo class instances.</param>
+            <param name="obj">The object to enumerate.</param>
+            <param name="item">A name of the object which named value to set.</param>
+            <param name="valueName">A value name of which value to set.</param>
+            <param name="value">A value to set if found by item and valueName.</param>
+            <param name="name">A ne of the object which value(s) to set.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.ListObjects(System.String,System.String,System.Reflection.FieldInfo[]@,System.Object,System.Globalization.CultureInfo,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the items and properties of a object
+            <para/>based on the allowed name spaces and allowed type lists.
+            </summary>
+            <param name="productName">The application product name.</param>
+            <param name="formWindowName">The name of the form / window,
+            <para/>which objects to get.</param>
+            <param name="infos">An array of FieldInfo class instances belonging to the base object.</param>
+            <param name="baseObject">The base object (usually a form / window).</param>
+            <param name="culture">A culture to "mark" the internal object list.</param>
+            <param name="propertyNames">A nems of the properties to include in the object list.
+            <para/>If the value is null, no property names are prevented.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.ListObjects(System.String,System.String,System.Collections.Generic.List{System.Windows.FrameworkElement},System.Globalization.CultureInfo,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the items and properties of a object
+            <para/>based on the allowed name spaces and allowed type lists.
+            </summary>
+            <param name="productName">The application product name.</param>
+            <param name="formWindowName">The name of the form / window,
+            <para/>which objects to get.</param>
+            <param name="elements">A list of FrameworkElement or it's descendant class instances.</param>
+            <param name="culture">A culture to "mark" the internal object list.</param>
+            <param name="propertyNames">A nems of the properties to include in the object list.
+            <para/>If the value is null, no property names are prevented.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.GetNameProps(System.Object)">
+            <summary>
+            Gets the properties that can be associated with the object name
+            <para/>such as in Tag and Name.
+            </summary>
+            <param name="obj">An instance of an object which properties to get.</param>
+            <returns>A list of PropertyInfo inscances.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.HandlePropertiesGet(System.Reflection.PropertyInfo[],System.Object,System.String,System.String,System.Globalization.CultureInfo,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Handles the internal logic of the ListObjects method.
+            </summary>
+            <param name="piArr">An array of PropertyInfo class instances.</param>
+            <param name="obj">The object to enumerate.</param>
+            <param name="productName">The application product name.</param>
+            <param name="formWindowName">The name of the form / window,
+            <para/>which objects to set.</param>
+            <param name="culture">A culture to "mark" the internal object list.</param>
+            <param name="name">A ne of the object which value(s) to get.</param>
+            <param name="propertyNames">A nems of the properties to include in the object list.
+            <para/>If the value is null, no property names are prevented.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.GetNamelessObjects">
+            <summary>
+            A helper function to get all types of component type names in
+            <para/>a window or a form which have no name propery outsite the
+            <para/>UI designer. 
+            <para/>An unnamed object can be name by giving it a tag "Name=componentName".
+            </summary>
+            <returns>A list of unnamed component type names.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.GetObjectName(System.Collections.Generic.List{System.Reflection.PropertyInfo},System.Object)">
+            <summary>
+            Gets an object name if it has a Name property or
+            <para/>a Tag property set with string "Name=componentName"
+            </summary>
+            <param name="piArr">An array of PropertyInfo class instances.</param>
+            <param name="obj">The object which name to get if any.</param>
+            <returns>An object name if such is defined, otherwise string.Empty.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            An enumerator for a GuiObject class instance collection.
+            </summary>
+            <returns>An enumerator for a GuiObject class instance collection.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.GetEnumerator">
+            <summary>
+            The actual enumerator class instance.
+            </summary>
+            <returns>The actual enumerator class instance.</returns>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObjectsEnum.BaseInstanceName">
+            <summary>
+            Gets the name of the form / window this
+            <para/>class was initialized with.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObjectsEnum.Design">
+            <summary>
+            Gets a value indication if the program is in
+            desing mode. 
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObjectsEnum.BaseInstanceType">
+            <summary>
+            Gets the type of the window / form this
+            <para/>class instance was initialized with.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObjectsEnum.BaseInstance">
+            <summary>
+            Gets the window / form this
+            <para/>class instance was initialized with.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObjectsEnum.BaseInstanceProduct">
+            <summary>
+            Gets the applications product name.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObjectsEnum.AppForm">
+            <summary>
+            Gets the applications product name combined 
+            <para/>with the window / form name this
+            <para/>class instance was initialized with (e.g. "TestApp.Form1").
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObjectsEnum.NameSpaces">
+            <summary>
+            Returns the list of allowed name spaces for
+            <para/>object enumeration.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.LangLib.GuiObjectsEnum.NamelessWindowException">
+            <summary>
+            This exception is thrown if this class 
+            is initialized with "nameless" form / window.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObjectsEnum.NamelessWindowException.#ctor">
+            <summary>
+            The NamelessWindowException constructor.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.appType">
+            <summary>
+            The application type. 
+            <para/>WPF (for Windows Presentaton Foundation)
+            <para/>Winforms (for Windows Forms application)
+            <para/>Undefined (for throwing exceptions)
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.#ctor(System.Windows.Forms.Form,VPKSoft.LangLib.AppType)">
+            <summary>
+            The constructor for Windows Forms application.
+            </summary>
+            <param name="form">The base form for the DBLangEngine to use.</param>
+            <param name="appType">The application type. Should be AppType.Winforms.</param>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.useUids">
+            <summary>
+            Whether to use x:Uid's to reference to a FrameworkElement class instance.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.#ctor(System.Windows.Window,VPKSoft.LangLib.AppType,System.Boolean)">
+            <summary>
+            The constructor for Windows Presentation Foundation (WPF) application.
+            </summary>
+            <param name="window">The base window for the DBLangEngine to use.</param>
+            <param name="appType">The application type. Should be AppType.WPF.</param>
+            <param name="useUids">Whether to use x:Uid's to reference to a FrameworkElement class instance.</param>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.dataDir">
+            <summary>
+            A writable data directory.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.dbName">
+            <summary>
+            A default database name.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.GetAppSettingsFolder(VPKSoft.LangLib.AppType)">
+            <summary>
+            Just returns the default writable data directory for "non-roaming" applications.
+            </summary>
+            <returns>A writable data directory for "non-roaming" applications.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.GetAssemblyName(VPKSoft.LangLib.AppType)">
+            <summary>
+            Get an assembly of the application depending of
+            <para/>the application type (<paramref name="appType"/>).
+            </summary>
+            <param name="appType">The application type.</param>
+            <returns>The assembly of the application.</returns>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.messagesSaved">
+            <summary>
+            If the messages were saved to the database 
+            <para/>unsing the FallBackCulture property.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.langUseUpdated">
+            <summary>
+            If the INUSE field int the database was updated.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.culturesInserted">
+            <summary>
+            If the entire culture list supported by
+            <para/>the .NET Framework were inserted into to
+            <para/>language database.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.tablesCreated">
+            <summary>
+            If all the database tables required by the
+            <para/>library where created.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.parentItem">
+            <summary>
+            Application product name and the
+            <para/>underlying form name combined with a dot (.).
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.DBLangConnnection">
+            <summary>
+            The SQLite database connection to used for this library.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.buffer">
+            <summary>
+            If the library should buffer the language items
+            <para/>to be inserted into the database.
+            <para/>This is to avoid slowness created by
+            <para/>multiple transactions instead of one.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.sql_entry">
+            <summary>
+            Used as a buffer for SQL sentences to avoid
+            <para/>too small transactions.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.formNames">
+            <summary>
+            A list of forms / windows that already
+            <para/>have been enumerated to avoid
+            <para/>redoing the enumeration process.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.messages">
+            <summary>
+            A buffer for translated messages. This is to avoid querying
+            <para/>them from the database multiple times.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.statMessages">
+            <summary>
+            A static buffer for translated messages. 
+            <para/>This is to avoid querying
+            <para/>them from the database multiple times.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.fallBackCulture">
+            <summary>
+            The fall-back culture to be used if the 
+            <para/>current culture is not found from the language database.
+            <para/>The default is "en-US" (1033) which should be used
+            <para/>to ease up the localization process.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.InitalizeLanguage(System.String,System.Globalization.CultureInfo,System.Boolean)">
+            <summary>
+            The most important method in LangLib. This creates the database,
+            <para/>the tables to it (MESSAGES, FORMITEMS, CULTURES).
+            <para/><para/>Also the FallBackCulture is updated for the underlying form/window.
+            <para/>Messages from the given <paramref name="messageResource"/> are inserted to
+            <para/>the database if their don't exists.
+            <para/><para/>The table fields FORMITEMS.INUSE and MESSAGES.INUSE are updated
+            <para/>for the FallBackCulture.
+            </summary>
+            <param name="messageResource">A resource name that contains the application
+            <para/>messages in the fall FallBackCulture language.
+            <para/>For example if I have an application which assembly name is
+            <para/>LangLibTestWinforms and it has a .resx file called Messages
+            <para/>I would give this parameter a value of "LangLibTestWinforms.Messages".</param>
+            <param name="culture">The culture to use for the localization.
+            <para/>If no culture is given the current system culture is used and
+            <para/>the FallBackCulture is used as fallback culture.</param>
+            <param name="loadItems">To load language items or not.</param>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.ts">
+            <summary>
+            The total time the library has spent in the
+            <para/>InitalizeLanguage method.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.GetStatMessage(System.String,System.Globalization.CultureInfo,System.String,System.Object[])">
+            <summary>
+            Gets a message based on a name and culture from cache.
+            <para/>If the cache does not have the message, a database search is executed
+            <para/>and <see cref="P:VPKSoft.LangLib.DBLangEngine.FallBackCulture"/> culture is used as fallback.
+            <para/>If the database does not have a message the default message is used.
+            </summary>
+            <param name="name">The name of the message to get</param>
+            <param name="ci">Culture for the message</param>
+            <param name="defaultMessage">The default message</param>
+            <param name="items">Parameters for formatting the message.</param>
+            <returns>A message based on the rules in the summary.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.GetStatMessage(System.String,System.String,System.Object[])">
+            <summary>
+            Gets a message based on a name and current culture from cache.
+            <para/>If the cache does not have the message, a database search is executed
+            <para/>and <see cref="P:VPKSoft.LangLib.DBLangEngine.FallBackCulture"/> culture is used as fallback.
+            <para/>If the database does not have a message the default message is used.
+            </summary>
+            <param name="name">The name of the message to get</param>
+            <param name="defaultMessage">The default message</param>
+            <param name="items">Parameters for formatting the message.</param>
+            <returns>A message based on the rules in the summary.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.GetMessage(System.String,System.String,System.Object[])">
+            <summary>
+            Gets a message based on a name and current culture from cache.
+            <para/>If the cache does not have the message, a database search is executed
+            <para/>and FallBackCulture culture is used as fallback.
+            <para/>If the database does not have a message the default message is used.
+            </summary>
+            <param name="name">The name of the message to get</param>
+            <param name="defaultMessage">The default message</param>
+            <param name="items">Parameters for formatting the message.</param>
+            <returns>A message based on the rules in the summary.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.GetLocalizedCultures">
+            <summary>
+            Gets a list of CultureInfo class instances which are localized.
+            <para/>(Exists in the database).
+            </summary>
+            <returns>A list of CultureInfo class instances which are localized</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.GetMessage(System.String,System.Globalization.CultureInfo,System.String,System.Object[])">
+            <summary>
+            Gets a message based on a name and culture from cache.
+            <para/>If the cache does not have the message, a database search is executed
+            <para/>and <see cref="P:VPKSoft.LangLib.DBLangEngine.FallBackCulture"/> culture is used as fallback.
+            <para/>If the database does not have a message the default message is used.
+            </summary>
+            <param name="name">The name of the message to get</param>
+            <param name="ci">Culture for the message</param>
+            <param name="defaultMessage">The default message</param>
+            <param name="items">Parameters for formatting the message.</param>
+            <returns>A message based on the rules in the summary.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.BeginBuffer">
+            <summary>
+            Begins a buffer for SQL sentences to avoid
+            <para/>small transactions. The "buffer" is executed
+            <para/>when the EndBuffer method is called and
+            <para/>then cleared.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.EndBuffer">
+            <summary>
+            Executes a transaction (a sequence of SQL sentences) from
+            <para/>the "buffer". After completion of the "buffer" excecution,
+            <para/>the "buffer" is cleared and buffering is disabled.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.InsertLangItem(System.String,System.String,System.String,System.String,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Inserts a single language item to the database or buffers
+            <para/>it if the BeginBuffer method has been called before.
+            </summary>
+            <param name="app_form">A combination of the applications assembly name and
+            <para/>the underlying form / window name.</param>
+            <param name="item">An item name. E.g. "Form1".</param>
+            <param name="propertyName">A property name. E.g. "Text".</param>
+            <param name="valueType">A value type. E.g. "System.String".</param>
+            <param name="value">A property value. E.g. "Form1".</param>
+            <param name="ci">The culture in which language the item is.
+            <para/>The database field FORMITEMS.INUSE is also updated to value of 1.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.SplitMessage(System.Collections.DictionaryEntry,System.String@,System.String@)">
+            <summary>
+            Splits a message into value and comment part. A message is split
+            <para/>from the last occurence of an or character (|). 
+            <para/>E.g. "A test message. Or characters (|) may also exist in the message.|As in a test message."
+            </summary>
+            <param name="i">A DictionaryEntry class instance which Value part is
+            <para/>split into value and comment part.</param>
+            <param name="value">A string where the message part of the message is placed.</param>
+            <param name="comment">A string where the comment part of the message is placed.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.SplitMessage(System.String,System.String@,System.String@)">
+            <summary>
+            Splits a message into value and comment part. A message is split
+            <para/>from the last occurence of an or character (|). 
+            <para/>E.g. "A test message. Or characters (|) may also exist in the message.|As in a test message."
+            </summary>
+            <param name="msg">A string which is split into value and comment part.</param>
+            <param name="value">A string where the message part of the message is placed.</param>
+            <param name="comment">A string where the comment part of the message is placed.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.SaveMessages(System.String,System.Reflection.Assembly,System.Data.SQLite.SQLiteConnection@)">
+            <summary>
+            Saved the application messages if the weren't already saved.
+            <para/>The database field MESSAGES.INUSE is also updated for all saved cultures.
+            </summary>
+            <param name="resourcefile">A resource name that contains the application
+            <para/>messages in the fall FallBackCulture language.
+            <para/>For example if I have an application which assembly name is
+            <para/>LangLibTestWinforms and it has a .resx file called Messages
+            <para/>I would give this parameter a value of "LangLibTestWinforms.Messages"</param>
+            <param name="assembly">The product's assembly (executing assembly).</param>
+            <param name="conn">Reference to a SQLiteConnection class instance.</param>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.DBCache">
+            <summary>
+            Internal cache for form / window objects to avoid running same SQL queries.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.ClearInternalCache">
+            <summary>
+            Run this to clear the internal cache.
+            <para/>This is usefull if you want change the
+            <para/>UI language on the fly.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.RunDBCache(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Gets all items for the given <paramref name="app_form"/> bases on the given culture.
+            <para/>If the given culture does not exist the FallBackCulture is used.
+            </summary>
+            <param name="app_form">A combination of the applications assembly name and
+            <para/>the underlying form / window name.</param>
+            <param name="ci">A culture to use for getting the form / window items.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.LocalizedProps(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Gets a list of strings of properties to localize from
+            <para/>from the language database.
+            </summary>
+            <param name="app_form">Application product name concatenated with dot (.)
+            <para/>a form or window name.</param>
+            <param name="ci">A culture to use for getting the form / window items.</param>
+            <returns>A list of strings of properties to localize from
+            <para/>from the language database.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.LoadLanguageItems">
+            <summary>
+            Load all the language items for the underlying 
+            <para/>form / window using the system's current culture.
+            <para/>If the culture is not found in the database, the FallBackCulture is used.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.LoadLanguageItems(System.Globalization.CultureInfo)">
+            <summary>
+            Load all the language items for the underlying 
+            form / window using the given culture.
+            </summary>
+            <param name="ci">Culture to use. If the given culture 
+            <para/>is not found in the database, the FallBackCulture is used.</param>
+            <returns>True if the operation was successfull, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.SaveLanguageItems(System.Object)">
+            <summary>
+            Saves the object's items to be localized into the language database.
+            The system's current culture is used.
+            </summary>
+            <param name="obj">An object instance which items should be saved.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.GetGuiObjets(System.Globalization.CultureInfo,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the object of the underlying form / window
+            <para/>as GuiObject class instances and "marks" them with
+            <para/>given culture.
+            </summary>
+            <param name="ci">A culture to "mark" the GuiObject class instance.</param>
+            <param name="propertyNames">A nems of the properties to include in the object list.
+            <para/>If the value is null, no property names are prevented.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.SaveLanguageItems(System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Saves the object's items to be localized into the language database.
+            The given current culture is used.
+            </summary>
+            <param name="obj">An object instance which items should be saved.</param>
+            <param name="ci">Culture to use.</param>
+        </member>
+        <member name="P:VPKSoft.LangLib.DBLangEngine.DBName">
+            <summary>
+            Gets or sets the SQLite database file name residing in DataDir.
+            <para/>The default is lang.sqlite.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.DBLangEngine.DataDir">
+            <summary>
+            Gets or sets a writable directory where the settings should be saved.
+            <para/>The default is "[...]\AppData\Local\[Assembly product name]."
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.DBLangEngine.FallBackCulture">
+            <summary>
+            The fall-back culture to be used if the 
+            <para/>current culture is not found from the language database.
+            <para/>The default is "en-US" (1033) which should be used
+            <para/>to ease up the localization process.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.DBLangEngine.InitTime">
+            <summary>
+            The total time the library has spent in the
+            <para/>InitalizeLanguage method in seconds. 
+            <para/>This property is mostly for testing and optimization purposes.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.DBLangEngine.InitTimeSpan">
+            <summary>
+            Gets the total time the library has spent in the
+            <para/>InitalizeLanguage method.
+            <para/>This property is mostly for testing and optimization purposes.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.LangLib.DBLangEngine.LangLibException">
+            <summary>
+            A base exception type for the LangLib
+            for general exceptions.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.LangLibException.#ctor(System.String)">
+            <summary>
+            The LangLibException class constructor.
+            </summary>
+            <param name="message">Initializes a new instance of the LangLibException class with a specified error message.</param>
+        </member>
+        <member name="T:VPKSoft.LangLib.DBLangEngine.InvalidSQLIteLibException">
+            <summary>
+            An exception tha is thrown if The SQLite library may be:
+            wrong version/wrong processor architecture/missing SQLite.Interop.dll/etc..
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.InvalidSQLIteLibException.#ctor">
+            <summary>
+            The InvalidSQLIteLibException class constructor.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.LangLib.DBLangEngine.DBCacheHolder">
+            <summary>
+            Internal class for caching localization items.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.DBCacheHolder.Item">
+            <summary>
+            Item name.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.DBCacheHolder.PropertyName">
+            <summary>
+            Property name.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.DBCacheHolder.ValueType">
+            <summary>
+            Value type.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.DBCacheHolder.Value">
+            <summary>
+            Value.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.DBCacheHolder.InUse">
+            <summary>
+            If the item is in use or not as in the database "point of view".
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.DBCacheHolder.NotFallBackLang">
+            <summary>
+            If item from the database matches the culture
+            <para/>one wished to get.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.DBCacheHolder.Culture">
+            <summary>
+            Culture as in Culture.ToString().
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngine.DBCacheHolder.AppForm">
+            <summary>
+            A combination of the applications assembly name and
+            <para/>the underlying form / window name.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.DBCacheHolder.#ctor">
+            <summary>
+            Basic constructor.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.DBCacheHolder.#ctor(System.Data.SQLite.SQLiteDataReader)">
+            <summary>
+            A constructor that initializes DBCacheHolder
+            <para/>properties with values gotten from a SQLiteDataReader instance.
+            </summary>
+            <param name="dr">A SQLiteDataReader instance.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngine.DBCacheHolder.ListContains(System.String,System.Collections.Generic.List{VPKSoft.LangLib.DBLangEngine.DBCacheHolder})">
+            <summary>
+            Checks if the AppForm is already in the cache.
+            </summary>
+            <param name="appForm">A combination of the applications assembly name and
+            <para/>the underlying form / window name.</param>
+            <param name="list">A list of DBCacheHolder instances.</param>
+            <returns>True if the AppForm is already in the given list.</returns>
+        </member>
+        <member name="T:VPKSoft.LangLib.DBLangEngineWinforms">
+            <summary>
+            Initializes a Windows Forms application wrapper.
+            <para/>System.Windows.Form should inherit from this.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngineWinforms.DBLangEngine">
+            <summary>
+            The actual localization engine (DBLangEngine) for
+            <para/>wrapper class.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngineWinforms.#ctor">
+            <summary>
+            The constructor. DBLangEngine is initialized.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.LangLib.DBUtils">
+            <summary>
+            A static class for database utilities.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBUtils.MkStr(System.String)">
+            <summary>
+            Makes a string a database combatible.
+            <para/> -Hyphens (') are replaced with double hyphens.
+            <para/> -The returning string is surrounded with hyphens (').
+            </summary>
+            <param name="str">A string to make database compatible.</param>
+            <returns>A database combatible string.</returns>
+        </member>
+        <member name="T:VPKSoft.LangLib.GuiEnum">
+            <summary>
+            An enumerator class for listing GuiObject class instances.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiEnum.wfObjects">
+            <summary>
+            An internal array of GuiObject class instances.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiEnum.position">
+            <summary>
+            Enumerators are positioned before the first element 
+            <para/>until the first MoveNext() call.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiEnum.#ctor(VPKSoft.LangLib.GuiObject[])">
+            <summary>
+            The GuiEnum class constructor.
+            <para/>The enumerator instance is initialized 
+            <para/>with the given array of GuiObject instances.
+            </summary>
+            <param name="list">A given array of GuiObject instances
+            <para/>to initialize the enumerator.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiEnum.MoveNext">
+            <summary>
+            Moves to a next GuiObject instance in the enumerator.
+            </summary>
+            <returns>True if there are more GuiObject instances
+            <para/>in the classes internal collection, otherwise false.</returns>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiEnum.Reset">
+            <summary>
+            Resets the enumerator to the first
+            <para/>GuiObject instance in the class internal
+            <para/>collection if any GuiObject instances exist.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiEnum.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the current GuiObject instance in the 
+            <para/>class internal collection.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiEnum.Current">
+            <summary>
+            Gets the current GuiObject instance in the 
+            <para/>class internal collection.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.LangLib.GuiObject">
+            <summary>
+            A class to define a single gui object.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObject.appForm">
+            <summary>
+            A combination of the applications assembly name and
+            <para/>the underlying form / window name.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObject.item">
+            <summary>
+            An item name. E.g. "Form1".
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObject.culture">
+            <summary>
+            The culture of the GuiObject instance.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObject.propertyName">
+            <summary>
+            A property name. E.g. "Text".
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObject.valueType">
+            <summary>
+            A value type. E.g. "System.String".
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObject.value">
+            <summary>
+            An object instance place holder representing
+            <para/>the value of referring GuiObject instance.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObject.inUse">
+            <summary>
+            If the object is in use or is not found.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.GuiObject.objectRef">
+            <summary>
+            A reference to the underlying object.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObject.#ctor(System.String,System.String,System.Globalization.CultureInfo,System.String,System.String,System.Object,System.Boolean,System.Object)">
+            <summary>
+            The constructor of the GuiObject class.
+            </summary>
+            <param name="appForm">A combination of the applications assembly name and
+            <para/>the underlying form / window name.</param>
+            <param name="item">An item name. E.g. "Form1".</param>
+            <param name="culture">The culture in which the GuiObject instance is.</param>
+            <param name="propertyName">A property name. E.g. "Text".</param>
+            <param name="valueType">A value type. E.g. "System.String".</param>
+            <param name="value">A property value. E.g. "Form1".</param>
+            <param name="inUse">If the GuiObject instance is in use.
+            <para/>E.g. found from the appForm.</param>
+            <param name="objectRef">A reference to the underlying object.</param>
+        </member>
+        <member name="M:VPKSoft.LangLib.GuiObject.SetValue(System.Object)">
+            <summary>
+            Set the value of the underlying object reference. 
+            </summary>
+            <param name="val">An optional value to set. 
+            <para/>If null the internal value is used.</param>
+            <returns>True if successfull, otherwise false.</returns>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObject.ObjectRef">
+            <summary>
+            Gets or sets a reference to the underlying object.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObject.AppForm">
+            <summary>
+            A combination of the applications assembly name and
+            <para/>the underlying form / window name.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObject.Item">
+            <summary>
+            An item name. E.g. "Form1".
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObject.Culture">
+            <summary>
+            The culture of the GuiObject instance.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObject.PropertyName">
+            <summary>
+            A property name. E.g. "Text".
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObject.Value">
+            <summary>
+            An object instance place holder representing
+            <para/>the value of referring GuiObject instance.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObject.ValueType">
+            <summary>
+            A value type. E.g. "System.String".
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.GuiObject.InUse">
+            <summary>
+            If the object is in use or is not found.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.LangLib.DBLangEngineWPF">
+            <summary>
+            Initializes a WPF application wrapper.
+            <para/>System.Windows.Window should inherit from this.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngineWPF.DBLangEngine">
+            <summary>
+            The actual localization engine (DBLangEngine) for
+            <para/>wrapper class.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.DBLangEngineWPF.UseUids">
+            <summary>
+            Whether to use x:Uid's to reference to a FrameworkElement class instance.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.DBLangEngineWPF.#ctor">
+            <summary>
+            The constructor. DBLangEngine is initialized.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.LangLib.StringMessages">
+            <summary>
+            A class to store a single message used in the LangLib.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.StringMessages.messageName">
+            <summary>
+            The name of the message.
+            </summary>
+        </member>
+        <member name="F:VPKSoft.LangLib.StringMessages.message">
+            <summary>
+            The message itself.
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.StringMessages.#ctor(System.String,System.String)">
+            <summary>
+            StringMessages class constructor.
+            </summary>
+            <param name="messageName">The name of the message.</param>
+            <param name="message">The message itself.</param>
+        </member>
+        <member name="P:VPKSoft.LangLib.StringMessages.Message">
+            <summary>
+            Gets the message.
+            </summary>
+        </member>
+        <member name="P:VPKSoft.LangLib.StringMessages.MessageName">
+            <summary>
+            Gets the name of the message.
+            </summary>
+        </member>
+        <member name="T:VPKSoft.LangLib.Utils">
+            <summary>
+            Some utilities used in the LangLib
+            </summary>
+        </member>
+        <member name="M:VPKSoft.LangLib.Utils.ShouldLocalize">
+            <summary>
+            Checks if a program was given a command line parameter
+            <para/>"--dbLang" to notify that the program should localize
+            <para/>it self.
+            </summary>
+            <returns>A CultureInfo if the program was given the command 
+            <para/>line parameter "--dbLang", otherwise null.</returns>
+        </member>
+    </members>
+</doc>
